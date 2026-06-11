@@ -5,18 +5,34 @@ import (
 	"html/template"
 	"net/http"
 
-	"../services/api"
+	"car-viewer/services"
 )
 
 var tmpl = template.Must(template.ParseFiles("templates/index.html"))
 
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-	tmpl.Execute(w, "Habg")
-	cars, err := api.GetCars()
+func HomeHandler(w http.ResponseWriter, r *http.Request) {
+
+	cars, err := services.GetCars()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	manufacturers, err := services.GetManufacturers()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	categories, err := services.GetCategories()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	carViews := services.BuildCarViews(cars, manufacturers, categories)
+
+	tmpl.Execute(w, carViews)
 
 	fmt.Fprintln(w, "Car Viewer is running")
 	for _, car := range cars {
