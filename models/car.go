@@ -36,3 +36,13 @@ type CarView struct {
 	Year         int
 	Image        string
 }
+
+type PageData struct {
+	Cars []CarView
+
+	// 	SearchQuery string
+
+	// 	SelectedCategory string
+
+	// Error string
+}

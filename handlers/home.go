@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 
+	"car-viewer/models"
 	"car-viewer/services"
 )
 
@@ -31,11 +31,10 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	carViews := services.BuildCarViews(cars, manufacturers, categories)
-
-	tmpl.Execute(w, carViews)
-
-	fmt.Fprintln(w, "Car Viewer is running")
-	for _, car := range cars {
-		fmt.Fprintf(w, "%s (%d)\n", car.Name, car.Year)
+	pageData := models.PageData{
+		Cars: carViews,
 	}
+
+	tmpl.Execute(w, pageData)
+
 }
