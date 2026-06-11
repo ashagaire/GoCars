@@ -1,3 +1,4 @@
+{{define "landingPage"}}
 <!DOCTYPE html>
 <html>
 
@@ -19,8 +20,9 @@
         <h3>
             some big text.
         </h3>
+        Here is an sample car data:
 
-        Here is an sample caar data:
+        {{range .}}
         <h3>Id: {{.Id}}</h3>
         <h3>Name: {{.Name}}</h3>
         <h3>ManufacturerId: {{.ManufacturerId}}</h3>
@@ -31,11 +33,13 @@
         <h3>Horsepower: {{.Specifications.Horsepower}}</h3>
         <h3>Drivetrain: {{.Specifications.Drivetrain}}</h3>
         <h3>Image: {{.Image}}</h3>
-
-
+        <br />
+        <hr />
+        {{end}}
 
     </div>
 
 </body>
 
 </html>
+{{end}}
