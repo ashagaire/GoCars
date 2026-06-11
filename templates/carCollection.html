@@ -1,0 +1,12 @@
+{{define "carCollection"}}
+<div>
+    Here is an sample car data:
+    {{range .DummyDataset}}
+
+    {{template "carCard" .}}
+    <br />
+    <hr />
+    {{end}}
+
+</div>
+{{end}}
