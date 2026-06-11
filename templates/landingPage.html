@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> Interface - Using template </title>
+    <!-- <link rel="stylesheet" href="/static/style.css"> -->
+</head>
+
+
+<body>
+    <header>
+        <h1>
+            header here
+        </h1>
+    </header>
+
+    <div>
+        <h3>
+            some big text.
+        </h3>
+
+        Here is an sample caar data:
+        <h3>Id: {{.Id}}</h3>
+        <h3>Name: {{.Name}}</h3>
+        <h3>ManufacturerId: {{.ManufacturerId}}</h3>
+        <h3>CategoryId: {{.CategoryId}}</h3>
+        <h3>Year: {{.Year}}</h3>
+        <h3>Engine: {{.Specifications.Engine}}</h3>
+        <h3>Transmission: {{.Specifications.Transmission}}</h3>
+        <h3>Horsepower: {{.Specifications.Horsepower}}</h3>
+        <h3>Drivetrain: {{.Specifications.Drivetrain}}</h3>
+        <h3>Image: {{.Image}}</h3>
+
+
+
+    </div>
+
+</body>
+
+</html>
