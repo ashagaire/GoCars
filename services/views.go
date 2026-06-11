@@ -18,6 +18,7 @@ func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categ
 	var carViews []models.CarView
 	for _, car := range cars {
 		carView := models.CarView{
+			ID:           car.ID,
 			Name:         car.Name,
 			Manufacturer: manufacturerMap[car.ManufacturerID],
 			Category:     categoryMap[car.CategoryID],
