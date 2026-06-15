@@ -2,6 +2,7 @@ package services
 
 import (
 	"car-viewer/models"
+	"strconv"
 	"strings"
 )
 
@@ -47,4 +48,23 @@ func matchesQuery(car models.Car, query string) bool {
 		return true
 	}
 	return containsIgnoreCase(car.Name, query) || containsIgnoreCase(car.Specifications.Engine, query) || containsIgnoreCase(car.Specifications.Transmission, query) || containsIgnoreCase(car.Specifications.Drivetrain, query)
+}
+
+func ParseIDs(strIDs []string) []int {
+	var ids []int
+	for _, strID := range strIDs {
+		id, err := strconv.Atoi(strID)
+		if err == nil {
+			ids = append(ids, id)
+		}
+	}
+	return ids
+}
+
+func ParseNumber(strNumber string) int {
+	number, err := strconv.Atoi(strNumber)
+	if err != nil {
+		return 0
+	}
+	return number
 }

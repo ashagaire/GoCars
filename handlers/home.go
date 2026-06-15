@@ -49,10 +49,10 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 	filters := models.CarFilters{
 		Query:           query,
-		ManufacturerIDs: ParseIDs(manufacturerIDs),
-		CategoryIDs:     ParseIDs(categoryIDs),
-		YearFrom:        ParseNumber(yearFrom),
-		YearTo:          ParseNumber(yearTo),
+		ManufacturerIDs: services.ParseIDs(manufacturerIDs),
+		CategoryIDs:     services.ParseIDs(categoryIDs),
+		YearFrom:        services.ParseNumber(yearFrom),
+		YearTo:          services.ParseNumber(yearTo),
 	}
 
 	filterCars := services.FilterCars(cars, filters)
