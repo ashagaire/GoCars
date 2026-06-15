@@ -48,20 +48,18 @@ type PageData struct {
 	// Error string
 }
 
-// type CarDetailView struct {
-// 	ID             int
-// 	Name           string
-// 	Manufacturer   string
-// 	Category       string
-// 	Year           int
-// 	ImageURL       string
-// 	Specifications Specifications
-// }
+type CarDetailView struct {
+	ID             int
+	Name           string
+	Manufacturer   string
+	Category       string
+	Year           int
+	ImageURL       string
+	Specifications Specifications
+}
 
 //type CarDetailView struct {}
 
 //type CompareView struct {}
 
 //type RecommendationView struct {}
-
-
