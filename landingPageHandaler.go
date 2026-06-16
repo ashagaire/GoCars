@@ -9,6 +9,7 @@ import (
 
 type carsDataset struct {
 	DummyDataset []TemplateData 
+	ActivePage string
 }
 func landingPageHandaler(w http.ResponseWriter, req *http.Request) {
 	// showData := []TemplateData {}
@@ -26,6 +27,7 @@ func landingPageHandaler(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	data.DummyDataset = dataset()
+	data.ActivePage = "landing"
 	err := tpl.ExecuteTemplate(w,"landingPage",data)
 	if err != nil {
 		tpl.ExecuteTemplate(w, err.Error(), data)

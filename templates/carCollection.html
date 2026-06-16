@@ -1,12 +1,18 @@
 {{define "carCollection"}}
-<div>
-    Here is an sample car data:
-    {{range .DummyDataset}}
+<div class="car-collection">
+    <div class="collection-hero">
+        <p class=""> Car Listing</p>
+        <p class=""> {{ len .DummyDataset }} cars available</p>
+    </div>
+    <div class="car-grid">
+        {{range .DummyDataset}}
 
-    {{template "carCard" .}}
-    <br />
-    <hr />
-    {{end}}
+        {{template "carCard" .}}
+
+        {{end}}
+    </div>
+
+
 
 </div>
 {{end}}

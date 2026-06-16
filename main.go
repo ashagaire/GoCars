@@ -8,7 +8,7 @@ import (
 
 func main() {
 	fileServer := http.FileServer(http.Dir("static"))
-	http.Handle("/ststiic/", http.StripPrefix("/static", fileServer))
+	http.Handle("/static/", http.StripPrefix("/static", fileServer))
 
 	http.HandleFunc("/", landingPageHandaler)
 	fmt.Println("Server is running  at http://localhost:8080 ...")

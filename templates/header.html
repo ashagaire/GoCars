@@ -1,11 +1,11 @@
 {{ define "header"}}
-<header>
-    <div>
-        <a href="/" class=""> GoCars</a>
-        <nav>
-            <a href="/compare" class=""> Comparision</a>
-            <a href="/stats" class=""> Stats</a>
-        </nav>
-    </div>
+<header class="header">
+    <a href="/" class="logo"> GoCars</a>
+    <nav class="nav-links">
+        <a href="/compare" class="{{if eq . `compare` }} selected {{end}}"> Compare</a>
+        <a href="/stats" class="{{if eq . `stats` }} selected {{end}} "> Stats</a>
+        <a href="/recommend" class="{{if eq . `recommend` }} selected {{end}} "> Recommend</a>
+    </nav>
+
 </header>
 {{end}}
