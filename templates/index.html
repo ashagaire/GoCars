@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cars Viewer</title>
+</head>
+
+<body>
+
+    <h1>Cars Viewer</h1>
+
+    {{range .Cars}}
+    <div>
+        <h2>{{.Name}}</h2>
+
+        <p>Manufacturer: {{.Manufacturer}}</p>
+
+        <p>Category: {{.Category}}</p>
+
+        <p>Year: {{.Year}}</p>
+    </div>
+
+    <hr>
+
+    {{end}}
+
+</body>
+
+</html>
