@@ -1,29 +1,30 @@
+{{define "home"}}
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Cars Viewer</title>
+    <title>GoCars</title>
+    <meta charset="UTF-8">
+    <title> Interface - Using template </title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
+    {{template "header" .ActivePage}}
 
-    <h1>Cars Viewer</h1>
-
-    {{range .Cars}}
     <div>
-        <h2>{{.Name}}</h2>
+        <p class="hero-text"> Find the list of cars availavle in GoCars </p>
+        <div class="search">
+            <p> Here goes search feature </p>
+        </div>
+        {{template "carCollection" .}}
 
-        <p>Manufacturer: {{.Manufacturer}}</p>
-
-        <p>Category: {{.Category}}</p>
-
-        <p>Year: {{.Year}}</p>
     </div>
 
-    <hr>
 
-    {{end}}
 
 </body>
 
 </html>
+{{end}}

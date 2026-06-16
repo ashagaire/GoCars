@@ -8,7 +8,7 @@ import (
 	"car-viewer/services"
 )
 
-var homeTemplate = template.Must(template.ParseFiles("templates/index.html"))
+var Tmpl *template.Template
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -33,8 +33,14 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	carViews := services.BuildCarViews(cars, manufacturers, categories)
 	pageData := models.PageData{
 		Cars: carViews,
+		ActivePage: "home",
 	}
 
-	homeTemplate.Execute(w, pageData)
+	// homeTemplate.Execute(w, pageData)
+	err = Tmpl.ExecuteTemplate(w, "home", pageData)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 }

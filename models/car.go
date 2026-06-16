@@ -40,6 +40,7 @@ type CarView struct {
 
 type PageData struct {
 	Cars []CarView
+	ActivePage string
 
 	// 	SearchQuery string
 

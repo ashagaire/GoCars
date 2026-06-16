@@ -2,10 +2,10 @@
 <div class="car-collection">
     <div class="collection-hero">
         <p class=""> Car Listing</p>
-        <p class=""> {{ len .DummyDataset }} cars available</p>
+        <p class=""> {{ len .Cars }} cars available</p>
     </div>
     <div class="car-grid">
-        {{range .DummyDataset}}
+        {{range .Cars}}
 
         {{template "carCard" .}}
 
