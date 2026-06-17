@@ -1,0 +1,11 @@
+{{ define "header"}}
+<header class="header">
+
+    <a href="/" class="logo"> GoCars</a>
+    <nav class="nav-links">
+        <a href="/compare" class="{{if eq . `compare` }} selected {{end}}"> Compare</a>
+        <a href="/stats" class="{{if eq . `stats` }} selected {{end}} "> Stats</a>
+    </nav>
+
+</header>
+{{end}}

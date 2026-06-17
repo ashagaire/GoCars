@@ -17,23 +17,38 @@ cd api
 - Install [NodeJS](http://nodejs.org)
 - Install [NPM](https://www.npmjs.com/package/npm) package manager
 - Install required packages: 
-- Install required packages: 
+
+```bash
+npm install
+```
+
 ```bash 
 make build
 ```
+
+
 
 To run the server you need simply to execute the following command:
 ```bash
 make run
 ```
 
+```bash
+Server is running on http://localhost:3000
 ```
+
+
 Or if you want to customize the port of the server (port 3001 for example), run:
+
 ```bash
 PORT=3001 make run
 ```
 
-## Execute the GoCar web application in root folder
+## Execute the GoCars web application in root folder
+
+```bash
+cd GoCars 
+```
 
 ```bash
 go run . 

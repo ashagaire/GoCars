@@ -1,0 +1,18 @@
+{{define "carCollection"}}
+<div class="car-collection">
+    <div class="collection-hero">
+        <p class=""> Car Listing</p>
+        <p class=""> {{ len .Cars }} cars available</p>
+    </div>
+    <div class="car-grid">
+        {{range .Cars}}
+
+        {{template "carCard" .}}
+
+        {{end}}
+    </div>
+
+
+
+</div>
+{{end}}

@@ -4,13 +4,19 @@ import (
 	"car-viewer/handlers"
 	"fmt"
 	"net/http"
+	"log"
 )
 
 func main() {
 	fileServer := http.FileServer(http.Dir("static"))
-	http.Handle("/ststiic/", http.StripPrefix("/static", fileServer))
+	http.Handle("/static/", http.StripPrefix("/static/", fileServer))
+
+	imageServer := http.FileServer(http.Dir("./api/img"))
+	http.Handle("/api-car-images/", http.StripPrefix("/api-car-images/", imageServer))
 
 	http.HandleFunc("/", handlers.HomeHandler)
 	fmt.Println("Go server running at http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+	err1 := http.ListenAndServe(":8080", nil)
+	log.Fatalln(err1)
 }
+
