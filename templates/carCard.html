@@ -2,10 +2,14 @@
 
 <div class="car-card">
     <div class="car-card-grid">
-        <div class="car-image">
+        <div class="car-image-container">
+            <a href="/{{.ID}}" class="" style="height: 0px; width: 0x;">
+                <img src="/api-car-images/{{.Image}}" href="/{{.ID}}" class="car-image">
+            </a>
+            <!-- <img src="/api-car-images/{{.Image}}"> -->
 
-            Here goes car image
-            {{/* <h3>Image: {{.Image}}</h3> */}}
+            <!-- Here goes car image -->
+            <!-- <h3>"../api/img/{{.Image}}"</h3> -->
         </div>
         <div class="car-content">
             <div class="car-details-cols" style="justify-content: space-between;">

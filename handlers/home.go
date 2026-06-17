@@ -3,14 +3,17 @@ package handlers
 import (
 	"html/template"
 	"net/http"
-
+	"log"
 	"car-viewer/models"
 	"car-viewer/services"
 )
 
-var Tmpl *template.Template
-
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
+
+	templates, err := template.ParseGlob("templates/*.html")
+	if err != nil {
+		log.Fatalf("Error parsing templates: %v", err)
+	}
 
 	cars, err := services.GetCars()
 	if err != nil {
@@ -36,8 +39,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		ActivePage: "home",
 	}
 
-	// homeTemplate.Execute(w, pageData)
-	err = Tmpl.ExecuteTemplate(w, "home", pageData)
+	err = templates.ExecuteTemplate(w, "home", pageData)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

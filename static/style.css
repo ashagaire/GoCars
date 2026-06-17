@@ -14,13 +14,13 @@ p {
     align-items: center;
     margin-bottom: 8px;
     padding: 20px;
-    background-color: #f5ecec;
+    background-color: #edf3f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
 }
 
 .header a {
-    color: #de9905;
+    color: #2d7ae5;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -28,7 +28,7 @@ p {
 .logo {
     font-size: 2.5rem;
     font-weight: 700 !important;
-    color: #e8691a !important;
+    color: #1a1ae8 !important;
 }
 
 .nav-links {
@@ -39,36 +39,37 @@ p {
 }
 
 .nav-links a:hover {
-    color: #efac40;
-    border-bottom: 2px solid #efac40;
+    color: #2047f3;
+    border-bottom: 2px solid #2047f3;
     /* Change color on hover instead of underline */
 }
 
 .nav-links a.selected {
-    color: #f3c436;
+    color: #12b9ec;
     font-weight: 500;
-    border-bottom: 2px solid #f3c436;
+    border-bottom: 2px solid #12b9ec;
 }
 
 .hero-text {
     font-size: 32px;
+    font-weight: 600;
     padding: 20px 20px;
-    color: #e8691a;
+    color: #2d7ae5;
 }
 
 .search {
-    border: 2px solid #efcb91;
+    border: 2px solid #89afe0;
     border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 20px 20px;
     padding: 20px 20px;
     font-size: 24px;
     font-weight: 700;
-    color: #e8691a;
+    color: #2d7ae5;
 }
 
 .car-collection {
-    border: 2px solid #efcb91;
+    border: 2px solid #89afe0;
     border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 0px 20px;
@@ -81,21 +82,21 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #e8691a;
-    border-bottom: 2px solid #fef7e3;
+    color: #2d7ae5;
+    border-bottom: 2px solid #c9def8;
     padding: 20px 0px 10px 0px;
 
 }
 
 .car-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     padding: 0px 0px;
 }
 
 .car-card {
-    border: 2px solid #e1e0de;
+    border: 2px solid #eaf3fa;
     border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 20px 0px;
@@ -114,11 +115,19 @@ p {
     padding: 0px 0px;
 }
 
-.car-image {
-    max-height: 300px;
-    /* border-radius: 12px; */
+.car-image-container {
+    height: 200px;
+    width: 100%;
     overflow: hidden;
-    background-color: antiquewhite;
+    /* background-color: rgb(215, 233, 250); */
+}
+
+.car-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .car-content {
@@ -149,9 +158,11 @@ p {
 }
 
 .year {
-    border: 1px solid #e4e0d9;
+    /* border: 1px solid #e4e0d9; */
     border-radius: 18px;
-    background-color: #f7f5f5;
+    background-color: #1a1ae8;
+    font-weight: 800;
+    color: aliceblue;
     padding: 4px 8px;
     font-size: 14px;
 }
@@ -159,6 +170,7 @@ p {
 
 /* Responsive Design for Mobile Screens */
 @media (max-width: 600px) {
+
     .header {
         /* flex-direction: column; */
         padding: 6px;
@@ -183,7 +195,6 @@ p {
     .hero-text {
         font-size: 20px;
         padding: 0px 20px;
-        color: #e8691a;
     }
 
     .search {
@@ -194,5 +205,31 @@ p {
         font-size: 20px;
         font-weight: 500;
     }
+}
 
+@media (min-width: 600px) {
+    .car-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        padding: 0px 0px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .car-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.5rem;
+        padding: 0px 0px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .car-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.5rem;
+        padding: 0px 0px;
+    }
 }
