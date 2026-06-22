@@ -12,7 +12,7 @@ func FilterCars(cars []models.Car, filters models.CarFilters) []models.Car {
 		if len(filters.ManufacturerIDs) != 0 && !containsInt(filters.ManufacturerIDs, car.ManufacturerID) {
 			continue
 		}
-		if filters.CategoryIDs != 0 && filters.CategoryIDs != car.CategoryID {
+		if len(filters.CategoryIDs) != 0 && !containsInt(filters.CategoryIDs, car.CategoryID) {
 			continue
 		}
 		if filters.YearFrom != 0 && car.Year < filters.YearFrom {
@@ -62,9 +62,6 @@ func ParseIDs(strIDs []string) []int {
 }
 
 func ParseNumber(strNumber string) int {
-	if strNumber == "" {
-		return 0
-	}
 	number, err := strconv.Atoi(strNumber)
 	if err != nil {
 		return 0
