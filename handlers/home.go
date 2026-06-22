@@ -42,12 +42,12 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	yearFrom := r.URL.Query().Get("year_from")
 	yearTo := r.URL.Query().Get("year_to")
 	manufacturerIDs := r.URL.Query()["manufacturer_id"]
-	categoryIDs := r.URL.Query()["category_id"]
+	categoryIDs := r.URL.Query().Get("category_id")
 
 	filters := models.CarFilters{
 		Query:           query,
 		ManufacturerIDs: services.ParseIDs(manufacturerIDs),
-		CategoryIDs:     services.ParseIDs(categoryIDs),
+		CategoryIDs:     services.ParseNumber(categoryIDs),
 		YearFrom:        services.ParseNumber(yearFrom),
 		YearTo:          services.ParseNumber(yearTo),
 	}
