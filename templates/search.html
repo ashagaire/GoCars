@@ -1,36 +1,49 @@
 {{define "search"}}
 
-<div>
-    <div class="search">
-        <p> Here goes search feature </p>
-         <form method="GET" action="/">
+<section class="search">
+    <div class="filter-header">
+        <h2> Advanced Search & Filter </h2>
+        
+    </div>
+    <form class="filter-form" method="GET" action="/">
+        <div class="filter-field">   
+            <label>Search</label>
             <input type="text" name="q" placeholder="Search cars..." value="{{.Filter.Query}}">
-            
-            <h3>Manufacturers</h3>
+        </div>
+        <a href="/" class="clear-link">Clear filters</a>
+        <fieldset>
+            <legend>Manufacturers</legend>
             {{range .Manufacturers}}
             <label>
                 <input type="checkbox" name="manufacturer_id" value="{{.ID}}" {{if isSelected $.Filter.ManufacturerIDs .ID}} checked {{end}}>
                 {{.Name}}
             </label>
             {{end}}
-
-            <h3>Categories</h3>
+        </fieldset>
+        
+        <label> Category   
+        <select name="category_id">
+            <option value="">Any Category</option>
             {{range .Categories}}
-            <label>
-                <input type="checkbox" name="category_id" value="{{.ID}}" {{if isSelected $.Filter.CategoryIDs .ID}} checked {{end}}>
+            <option value="{{.ID}}" {{if isSelected $.Filter.CategoryIDs .ID}} selected {{end}}>
                 {{.Name}}
-            </label>
+            </option>
             {{end}}
-
-            <h3>Year Range</h3>
+        </select>
+        </label>            
+            
+        <div class="year-group">
+            <legend>Year Range</legend>
             <input type="number" name="year_from" placeholder="From"  value="{{if ne .Filter.YearFrom 0}}{{.Filter.YearFrom}}{{end}}" >
+            <span>-</span>
             <input type="number" name="year_to" placeholder="To" value="{{if ne .Filter.YearTo 0}}{{.Filter.YearTo}}{{end}}">
+        </div>
+        
+        <button type="submit">Search</button>
+        
+        
+    </form>
+</section>    
 
-            <button type="submit">Search</button>
-            <a href="/">Clear filters</a>
-
-        </form>
-    </div>
-</div>
 
 {{end}}
