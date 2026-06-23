@@ -8,6 +8,7 @@ type Car struct {
 	Year           int            `json:"year"`
 	Specifications Specifications `json:"specifications"`
 	Image          string         `json:"image"`
+	
 }
 
 type Specifications struct {
@@ -41,7 +42,8 @@ type CarView struct {
 type PageData struct {
 	Cars []CarView
 	ActivePage string
-
+	AllManufacture int
+	AllCategories  int
 	// 	SearchQuery string
 
 	// 	SelectedCategory string

@@ -33,9 +33,14 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	allManufacturer := len(manufacturers)
+	allCategories:= len(categories)
+	
 	carViews := services.BuildCarViews(cars, manufacturers, categories)
 	pageData := models.PageData{
 		Cars: carViews,
+		AllManufacture: allManufacturer,
+		AllCategories: allCategories,
 		ActivePage: "home",
 	}
 

@@ -12,15 +12,16 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
     padding: 20px;
-    background-color: #edf3f9;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #0b0b4b;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
+    border-bottom: 1px solid #393c42;
 }
 
 .header a {
-    color: #2d7ae5;
+    color: #dde4ef;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -28,7 +29,13 @@ p {
 .logo {
     font-size: 2.5rem;
     font-weight: 700 !important;
-    color: #1a1ae8 !important;
+    color: rgb(10, 140, 245) !important;
+}
+
+.logo i {
+    font-size: 2.5rem;
+    font-weight: 6px;
+
 }
 
 .nav-links {
@@ -167,6 +174,58 @@ p {
     font-size: 14px;
 }
 
+.hero-block {
+    /* min-height: 250px; */
+    color: aliceblue;
+    background-color: #0b0b4b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 20px
+}
+
+.hero-block-text {
+    margin-left: 50px;
+}
+
+.hero-block img {
+    max-height: 300px;
+    border-radius: 12px;
+}
+
+.hero-text-01 {
+    color: rgb(37, 147, 244);
+    font-size: 16px;
+}
+
+.hero-text-02 {
+    color: rgb(242, 245, 248);
+    font-size: 38px;
+}
+
+.hero-text-03 {
+    color: rgb(150, 154, 159);
+    font-size: 14px;
+}
+
+.hero-numbers {
+    margin-top: 20px;
+    display: flex;
+    justify-content: start;
+    gap: 32px;
+    align-items: start;
+}
+
+.hero-number-value {
+    color: rgb(231, 233, 235);
+    font-size: 20px;
+}
+
+.hero-number-title {
+    color: rgb(150, 154, 159);
+    font-size: 12px;
+}
 
 /* Responsive Design for Mobile Screens */
 @media (max-width: 600px) {
@@ -180,17 +239,19 @@ p {
     }
 
     .logo {
-        font-size: 1.5rem;
+        font-size: 1rem;
+    }
+
+    .logo i {
+        font-size: 1rem;
     }
 
     .nav-links {
         font-weight: 600;
-        font-size: 12px;
+        font-size: 10px;
         display: flex;
         gap: 0.5rem;
     }
-
-
 
     .hero-text {
         font-size: 20px;
@@ -214,6 +275,8 @@ p {
         gap: 1.5rem;
         padding: 0px 0px;
     }
+
+
 }
 
 @media (min-width: 1024px) {
@@ -232,4 +295,128 @@ p {
         gap: 1.5rem;
         padding: 0px 0px;
     }
+}
+
+@media (max-width: 1024px) {
+    .logo {
+        font-size: 1.75rem;
+    }
+
+    .logo i {
+        font-size: 1.75rem;
+    }
+
+    .hero-block {
+        color: aliceblue;
+        background-color: #0b0b4b;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 4px;
+        padding: 20px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .hero-block-text {
+        margin-left: 24px;
+    }
+
+    .hero-block img {
+        max-height: 200px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-right: 24px;
+    }
+
+    .hero-text-01 {
+        color: rgb(37, 147, 244);
+        font-size: 10px;
+    }
+
+    .hero-text-02 {
+        color: rgb(242, 245, 248);
+        font-size: 24px;
+    }
+
+    .hero-text-03 {
+        color: rgb(150, 154, 159);
+        font-size: 8px;
+    }
+
+    .hero-numbers {
+        margin-top: 20px;
+        display: flex;
+        justify-content: start;
+        gap: 16px;
+        align-items: start;
+    }
+
+    .hero-number-value {
+        color: rgb(231, 233, 235);
+        font-size: 12px;
+    }
+
+    .hero-number-title {
+        color: rgb(150, 154, 159);
+        font-size: 8px;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .hero-block {
+        color: aliceblue;
+        background-color: #0b0b4b;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+        padding: 10px
+    }
+
+    .hero-block-text {
+        margin-left: 8px;
+    }
+
+    .hero-block img {
+        max-height: 100px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .hero-text-01 {
+        color: rgb(37, 147, 244);
+        font-size: 4px;
+    }
+
+    .hero-text-02 {
+        margin-top: 4px;
+        color: rgb(242, 245, 248);
+        font-size: 16px;
+    }
+
+    .hero-text-03 {
+        color: rgb(150, 154, 159);
+        font-size: 5px;
+    }
+
+    .hero-numbers {
+        margin-top: 10px;
+        display: flex;
+        justify-content: start;
+        gap: 16px;
+        align-items: start;
+    }
+
+    .hero-number-value {
+        color: rgb(231, 233, 235);
+        font-size: 8px;
+    }
+
+    .hero-number-title {
+        color: rgb(150, 154, 159);
+        font-size: 6px;
+    }
+
 }

@@ -1,10 +1,12 @@
 {{ define "header"}}
 <header class="header">
 
-    <a href="/" class="logo"> GoCars</a>
+    <a href="/" class="logo"> <i class="fa-solid fa-car"></i> GoCars</a>
     <nav class="nav-links">
-        <a href="/compare" class="{{if eq . `compare` }} selected {{end}}"> Compare</a>
-        <a href="/stats" class="{{if eq . `stats` }} selected {{end}} "> Stats</a>
+        <a href="/compare" class="{{if eq . `compare` }} selected {{end}}"> <i class="fa-solid fa-scale-balanced"></i>
+            Compare</a>
+        <a href="/stats" class="{{if eq . `stats` }} selected {{end}} "> <i class="fa-solid fa-chart-column"></i>
+            Stats</a>
     </nav>
 
 </header>
