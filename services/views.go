@@ -23,6 +23,7 @@ func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categ
 			Manufacturer: manufacturerMap[car.ManufacturerID],
 			Category:     categoryMap[car.CategoryID],
 			Year:         car.Year,
+			Specifications: car.Specifications,
 			Image:        car.Image,
 		}
 

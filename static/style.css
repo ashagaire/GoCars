@@ -27,20 +27,13 @@ p {
 }
 
 .logo {
-    font-size: 2.5rem;
     font-weight: 700 !important;
     color: rgb(10, 140, 245) !important;
 }
 
-.logo i {
-    font-size: 2.5rem;
-    font-weight: 6px;
-
-}
-
 .nav-links {
-    font-weight: 600;
-    font-size: 24px;
+    font-weight: 500;
+    font-size: 20px;
     display: flex;
     gap: 1.5rem;
 }
@@ -76,13 +69,15 @@ p {
 }
 
 .car-collection {
-    border: 2px solid #89afe0;
-    border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 0px 20px;
     padding: 0px 20px;
-    font-size: 24px;
+
+}
+
+.total-cars {
+    font-size: 18px;
     font-weight: 700;
+    color: #2d7ae5;
 }
 
 .collection-hero {
@@ -90,8 +85,11 @@ p {
     justify-content: space-between;
     align-items: center;
     color: #2d7ae5;
-    border-bottom: 2px solid #c9def8;
-    padding: 20px 0px 10px 0px;
+    border-bottom: 2px solid #e4edf8;
+    padding: 20px 0px 4px 0px;
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-weight: 600;
 
 }
 
@@ -107,11 +105,7 @@ p {
     border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 20px 0px;
-    /* padding: 20px 20px; */
-    font-size: 20px;
-    font-weight: 500;
     overflow: hidden;
-
 }
 
 .car-card-grid {
@@ -125,8 +119,21 @@ p {
 .car-image-container {
     height: 200px;
     width: 100%;
+    position: relative;
     overflow: hidden;
-    /* background-color: rgb(215, 233, 250); */
+}
+
+.year {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    border-radius: 18px;
+    background-color: #2d7ae5;
+    font-weight: 800;
+    color: rgb(250, 251, 251);
+    padding: 4px 8px;
+    font-size: 14px;
 }
 
 .car-image {
@@ -155,23 +162,67 @@ p {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
+    /* align-items: flex-start; */
+    gap: 2px;
     margin: 4px 0px;
 }
 
-.name {
-    margin: 0px;
+.left {
+    align-items: flex-start;
 }
 
-.year {
-    /* border: 1px solid #e4e0d9; */
+.right {
+    align-items: flex-end;
+}
+
+.name {
+    color: #303236;
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 500px;
+}
+
+.category {
     border-radius: 18px;
-    background-color: #1a1ae8;
+    border: 1px solid #1876e8;
+    background-color: #ccdef9;
     font-weight: 800;
-    color: aliceblue;
+    color: #2d7ae5;
     padding: 4px 8px;
     font-size: 14px;
+}
+
+
+.car-details-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 2px;
+    padding: 0px;
+    justify-content: space-around;
+}
+
+.car-details-buttons a {
+    display: flex;
+    justify-content: center;
+    /* 2. Centers items horizontally */
+    align-items: center;
+    /* 3. Centers items vertically */
+    gap: 8px;
+    text-decoration: none;
+    border-radius: 18px;
+    border: 1px solid #1876e8;
+    background-color: #2d7ae5;
+    font-weight: 800;
+    color: rgb(250, 251, 251);
+    padding: 6px 8px;
+    font-size: 14px;
+
+    margin: 4px;
+
+    width: 100%;
+
 }
 
 .hero-block {
@@ -238,16 +289,8 @@ p {
         text-align: center;
     }
 
-    .logo {
-        font-size: 1rem;
-    }
-
-    .logo i {
-        font-size: 1rem;
-    }
-
     .nav-links {
-        font-weight: 600;
+        font-weight: 500;
         font-size: 10px;
         display: flex;
         gap: 0.5rem;
@@ -266,6 +309,9 @@ p {
         font-size: 20px;
         font-weight: 500;
     }
+
+
+
 }
 
 @media (min-width: 600px) {
@@ -274,6 +320,14 @@ p {
         grid-template-columns: 1fr 1fr;
         gap: 1.5rem;
         padding: 0px 0px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .logo i {
+        font-size: 16px;
     }
 
 
@@ -286,25 +340,53 @@ p {
         gap: 1.5rem;
         padding: 0px 0px;
     }
-}
 
-@media (min-width: 1440px) {
-    .car-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 1.5rem;
-        padding: 0px 0px;
-    }
-}
-
-@media (max-width: 1024px) {
     .logo {
-        font-size: 1.75rem;
+        font-size: 32px;
     }
 
     .logo i {
-        font-size: 1.75rem;
+        font-size: 32px;
     }
+
+    .car-spec {
+        color: #393a3c;
+        margin-top: 4px;
+        font-size: 16px;
+    }
+
+    .car-spec i {
+        color: #2d7ae5;
+        /* margin-bottom: 8px; */
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 1540px) {
+    .car-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1.5rem;
+        padding: 0px 0px;
+    }
+
+    .car-spec {
+        color: #393a3c;
+        margin-top: 4px;
+        font-size: 14px;
+    }
+
+    .car-spec i {
+        color: #2d7ae5;
+        /* margin-bottom: 8px; */
+        font-size: 12px;
+    }
+
+
+}
+
+@media (max-width: 1024px) {
+
 
     .hero-block {
         color: aliceblue;
@@ -362,6 +444,18 @@ p {
         font-size: 8px;
     }
 
+    .car-spec {
+        color: #393a3c;
+        margin-top: 4px;
+        font-size: 12px;
+    }
+
+    .car-spec i {
+        color: #2d7ae5;
+        margin-right: 4px;
+        font-size: 12px;
+    }
+
 }
 
 @media (max-width: 600px) {
@@ -417,6 +511,17 @@ p {
     .hero-number-title {
         color: rgb(150, 154, 159);
         font-size: 6px;
+    }
+
+    .car-spec {
+        color: #393a3c;
+        /* margin-top: 4px; */
+        font-size: 12px;
+    }
+
+    .car-spec i {
+        color: #2d7ae5;
+        font-size: 10px;
     }
 
 }

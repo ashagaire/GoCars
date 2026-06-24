@@ -1,8 +1,8 @@
 {{define "carCollection"}}
 <div class="car-collection">
     <div class="collection-hero">
-        <p class=""> Car Listing</p>
-        <p class=""> {{ len .Cars }} cars available</p>
+        <p class=""> Featured Cars</p>
+        <p class="total-cars"> {{ len .Cars }} Cars</p>
     </div>
     <div class="car-grid">
         {{range .Cars}}

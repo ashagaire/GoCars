@@ -3,27 +3,54 @@
 <div class="car-card">
     <div class="car-card-grid">
         <div class="car-image-container">
+            <span class="year">{{.Year}}</span>
+
             <a href="/{{.ID}}" class="" style="height: 0px; width: 0x;">
+
                 <img src="/api-car-images/{{.Image}}" href="/{{.ID}}" class="car-image">
             </a>
-            <!-- <img src="/api-car-images/{{.Image}}"> -->
 
-            <!-- Here goes car image -->
-            <!-- <h3>"../api/img/{{.Image}}"</h3> -->
         </div>
         <div class="car-content">
+            <p style="color: #7a7b7e; margin-top: 8px; font-size: 16px;">{{.Manufacturer}}</p>
+
             <div class="car-details-cols" style="justify-content: space-between;">
                 <h3 class="name">{{.Name}}</h3>
-                <span class="year">{{.Year}}</span>
+                <span class="category">{{.Category}}</span>
             </div>
-            <p style="color: #b3b1ad; margin-top: 8px; font-size: 18px;">{{.Manufacturer}}</p>
-            <div class="car-details-cols">
-                <div class="car-details-grid-row">
-                    <span style="color: #b3b1ad; margin-top: 8px; font-size: 16px;">HP</span>
+            <div class="car-details-cols" style=" margin: 10px 0px 10px 0px;">
+                <div class="car-details-grid-row left">
+                    <div class="car-spec ">
+                        <i class="fa-solid fa-gears"></i>
+                        <span>{{.Specifications.Engine}}</span>
+                    </div>
 
-                    <span style="margin-top: 4px; font-size: 20px;">{{.Category}}</span>
+                    <div class="car-spec ">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span> {{.Specifications.Horsepower}} HP </span>
+                    </div>
 
                 </div>
+                <div class="car-details-grid-row ">
+
+                    <div class="car-spec ">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <span>{{.Specifications.Transmission}}</span>
+                    </div>
+
+                    <div class="car-spec ">
+                        <i class="fa-solid fa-car"></i>
+                        <span>{{.Specifications.Drivetrain}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="car-details-buttons">
+                <a href="/{{.ID}}" style="">
+                    <i class="fa-solid fa-code-compare"></i>
+                    Compare </a>
+                <a href="/{{.ID}}" style="">
+
+                    View details <i class="fa-solid fa-arrow-right"></i></a>
 
             </div>
 

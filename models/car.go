@@ -36,6 +36,7 @@ type CarView struct {
 	Manufacturer string
 	Category     string
 	Year         int
+	Specifications Specifications
 	Image        string
 }
 
