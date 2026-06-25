@@ -9,10 +9,13 @@ import (
 func FilterCars(cars []models.Car, filters models.CarFilters) []models.Car {
 	var filtered []models.Car
 	for _, car := range cars {
+		if !matchesQuery(car, filters.Query) {
+			continue
+		}
 		if len(filters.ManufacturerIDs) != 0 && !containsInt(filters.ManufacturerIDs, car.ManufacturerID) {
 			continue
 		}
-		if len(filters.CategoryIDs) != 0 && !containsInt(filters.CategoryIDs, car.CategoryID) {
+		if filters.CategoryID != 0 && filters.CategoryID != car.CategoryID {
 			continue
 		}
 		if filters.YearFrom != 0 && car.Year < filters.YearFrom {
@@ -21,7 +24,20 @@ func FilterCars(cars []models.Car, filters models.CarFilters) []models.Car {
 		if filters.YearTo != 0 && car.Year > filters.YearTo {
 			continue
 		}
-		if !matchesQuery(car, filters.Query) {
+		if filters.HorsepowerFrom != 0 &&
+			car.Specifications.Horsepower < filters.HorsepowerFrom {
+			continue
+		}
+		if filters.HorsepowerTo != 0 &&
+			car.Specifications.Horsepower > filters.HorsepowerTo {
+			continue
+		}
+		if filters.Transmission != "" &&
+			!containsIgnoreCase(car.Specifications.Transmission, filters.Transmission) {
+			continue
+		}
+		if filters.Drivetrain != "" &&
+			!containsIgnoreCase(car.Specifications.Drivetrain, filters.Drivetrain) {
 			continue
 		}
 		filtered = append(filtered, car)
@@ -47,7 +63,7 @@ func matchesQuery(car models.Car, query string) bool {
 	if query == "" {
 		return true
 	}
-	return containsIgnoreCase(car.Name, query) || containsIgnoreCase(car.Specifications.Engine, query) || containsIgnoreCase(car.Specifications.Transmission, query) || containsIgnoreCase(car.Specifications.Drivetrain, query)
+	return containsIgnoreCase(car.Name, query) || containsIgnoreCase(car.Specifications.Engine, query) || containsIgnoreCase(strconv.Itoa(car.Specifications.Horsepower), query) || containsIgnoreCase(car.Specifications.Transmission, query) || containsIgnoreCase(car.Specifications.Drivetrain, query)
 }
 
 func ParseIDs(strIDs []string) []int {

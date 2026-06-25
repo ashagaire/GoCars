@@ -2,7 +2,7 @@
 
 <section class="search">
     <div class="filter-header">
-        <h4> Advanced Search & Filter </h4>
+        <h4> Find Your Car </h4>
     </div>
     <form class="filter-form" method="GET" action="/">
         <div class="search-box">   
@@ -23,25 +23,81 @@
             {{end}}
         </div>
         
-        <div class="category-year">
-            <div class="category-box">
+        <div class="specifications">
+            <div class="spec-grid">
+                <div class="category-box">
                 <h5> Category </h5>
-                <select name="category_id">
-                    <option value="">Any Category</option>
-                    {{range .Categories}}
-                    <option value="{{.ID}}" {{if isSelected $.Filter.CategoryIDs .ID}} selected {{end}}>
-                        {{.Name}}
-                    </option>
-                    {{end}}
-                </select>
-            </div>
+                    <select name="category_id">
+                        <option value="">Any</option>
+                        {{range .Categories}}
+                        <option value="{{.ID}}" {{if eq $.Filter.CategoryID .ID}}selected{{end}}>
+                            {{.Name}}
+                        </option>
+                        {{end}}
+                    </select>
+                </div>
+                <!-- Horsepower -->
 
-            <div class="year-box">
-                <h5>Year Range</h5>
-                <div class="year-inputs">
-                    <input type="number" name="year_from" placeholder="From"  value="{{if ne .Filter.YearFrom 0}}{{.Filter.YearFrom}}{{end}}" >
-                    <span>-</span>
-                    <input type="number" name="year_to" placeholder="To" value="{{if ne .Filter.YearTo 0}}{{.Filter.YearTo}}{{end}}">
+                <div class="horsepower-box">
+                    <h5>Horsepower</h5>
+                    <div class="horsepower-inputs">
+                        <input
+                            type="number"
+                            name="hp_from"
+                            placeholder="Min"
+                            value="{{if ne .Filter.HorsepowerFrom 0}}{{.Filter.HorsepowerFrom}}{{end}}">
+                        <span>-</span>
+                        <input
+                            type="number"
+                            name="hp_to"
+                            placeholder="Max"
+                            value="{{if ne .Filter.HorsepowerTo 0}}{{.Filter.HorsepowerTo}}{{end}}">
+                    </div>
+                </div>
+
+                <!-- Transmission -->
+                <div class="transmission-box">
+                    <h5>Transmission</h5>
+                    <select name="transmission">
+                        <option value="">Any</option>
+                        <option value="Automatic"
+                            {{if eq .Filter.Transmission "Automatic"}}selected{{end}}>
+                            Automatic
+                        </option>
+                        <option value="Manual"
+                            {{if eq .Filter.Transmission "Manual"}}selected{{end}}>
+                            Manual
+                        </option>
+                        <option value="CVT"
+                            {{if eq .Filter.Transmission "CVT"}}selected{{end}}>
+                            CVT
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Drivetrain -->
+                <div class="drivetrain-box">
+                    <h5>Drivetrain</h5>
+                    <select name="drivetrain">
+                        <option value="">Any</option>
+                        <option value="Front-Wheel Drive" {{if eq .Filter.Drivetrain "Front-Wheel Drive"}}selected{{end}}>
+                            Front-Wheel Drive
+                        </option>
+                        <option value="Rear-Wheel Drive" {{if eq .Filter.Drivetrain "Rear-Wheel Drive"}}selected{{end}}>
+                            Rear-Wheel Drive
+                        </option>
+                        <option value="All-Wheel Drive" {{if eq .Filter.Drivetrain "All-Wheel Drive"}}selected{{end}}>
+                            All-Wheel Drive
+                        </option>
+                    </select>
+                </div>
+                <div class="year-box">
+                    <h5>Year Range</h5>
+                    <div class="year-inputs">
+                        <input type="number" name="year_from" placeholder="From"  value="{{if ne .Filter.YearFrom 0}}{{.Filter.YearFrom}}{{end}}" >
+                        <span>-</span>
+                        <input type="number" name="year_to" placeholder="To" value="{{if ne .Filter.YearTo 0}}{{.Filter.YearTo}}{{end}}">
+                    </div>
                 </div>
             </div>
         </div>
