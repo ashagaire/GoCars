@@ -5,9 +5,8 @@
         <div class="car-image-container">
             <span class="year">{{.Year}}</span>
 
-            <a href="/{{.ID}}" class="" style="height: 0px; width: 0x;">
-
-                <img src="/api-car-images/{{.Image}}" href="/{{.ID}}" class="car-image">
+            <a href="/car?id={{.ID}}" class="">
+                <img src="/api-car-images/{{.Image}}" class="car-image">
             </a>
 
         </div>
@@ -45,10 +44,10 @@
                 </div>
             </div>
             <div class="car-details-buttons">
-                <a href="/{{.ID}}" style="">
+                <a href="/car?id={{.ID}}" style="">
                     <i class="fa-solid fa-code-compare"></i>
                     Compare </a>
-                <a href="/{{.ID}}" style="">
+                <a href="/car?id={{.ID}}" style="">
 
                     View details <i class="fa-solid fa-arrow-right"></i></a>
 

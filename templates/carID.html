@@ -1,0 +1,21 @@
+{{define "CarID"}}
+<div class="car-image-container">
+  <img src="/api-car-images/{{.ImageURL}}" class="car-image" />
+</div>
+<div>
+  <h1>{{ .Name }}</h1>
+
+  <p>Manufacturer: {{ .Manufacturer }}</p>
+  <p>Category: {{ .Category }}</p>
+</div>
+<div class="car-collection">
+  <div class="collection-hero">
+    <p class="">Recommended Cars</p>
+    <p class="total-cars">{{ len .RecommendedCars }} Cars</p>
+  </div>
+  <div class="car-grid">
+    {{range .RecommendedCars}} {{template "carCard" .}} {{end}}
+  </div>
+</div>
+
+{{end}}

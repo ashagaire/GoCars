@@ -8,7 +8,6 @@ type Car struct {
 	Year           int            `json:"year"`
 	Specifications Specifications `json:"specifications"`
 	Image          string         `json:"image"`
-	
 }
 
 type Specifications struct {
@@ -31,18 +30,18 @@ type Category struct {
 }
 
 type CarView struct {
-	ID           int
-	Name         string
-	Manufacturer string
-	Category     string
-	Year         int
+	ID             int
+	Name           string
+	Manufacturer   string
+	Category       string
+	Year           int
 	Specifications Specifications
-	Image        string
+	Image          string
 }
 
 type PageData struct {
-	Cars []CarView
-	ActivePage string
+	Cars           []CarView
+	ActivePage     string
 	AllManufacture int
 	AllCategories  int
 	// 	SearchQuery string
@@ -53,13 +52,14 @@ type PageData struct {
 }
 
 type CarDetailView struct {
-	ID             int
-	Name           string
-	Manufacturer   string
-	Category       string
-	Year           int
-	ImageURL       string
-	Specifications Specifications
+	ID              int
+	Name            string
+	Manufacturer    string
+	Category        string
+	Year            int
+	ImageURL        string
+	Specifications  Specifications
+	RecommendedCars []CarView
 }
 
 //type CarDetailView struct {}
