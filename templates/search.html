@@ -6,22 +6,25 @@
     </div>
     <form class="filter-form" method="GET" action="/">
         <div class="search-box">   
-            <label for="search">Search</label>
+            <div class="search-input">
+                <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" name="q" placeholder="Search cars..." value="{{.Filter.Query}}">
+            </div>
+    
         </div>
         
         <div class="manufacturer-list">
             <h5>Manufacturers</h5>
             {{range .Manufacturers}}
-            <label>
+            <label class="manufacturer-chip">
                 <input type="checkbox" name="manufacturer_id" value="{{.ID}}" {{if isSelected $.Filter.ManufacturerIDs .ID}} checked {{end}}>
-                {{.Name}}
+                <span>{{.Name}}</span>
             </label>
             {{end}}
         </div>
         
         <div class="category-year">
-            <div class="catebory-box">
+            <div class="category-box">
                 <h5> Category </h5>
                 <select name="category_id">
                     <option value="">Any Category</option>
@@ -42,12 +45,12 @@
                 </div>
             </div>
         </div>
-        
-        <button type="submit">Search</button>
-        <a href="/" class="clear-link">Clear filters</a>
+
+        <div class="filter-actions">
+            <button type="submit">Search</button>
+            <a href="/" class="clear-link">Clear filters</a>
+        </div>
         
     </form>
 </section>    
-
-
 {{end}}
