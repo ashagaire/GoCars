@@ -56,9 +56,13 @@ type PageData struct {
 type CarFilters struct {
 	Query           string
 	ManufacturerIDs []int
-	CategoryIDs     []int
+	CategoryID      int
 	YearFrom        int
 	YearTo          int
+	HorsepowerFrom  int
+	HorsepowerTo    int
+	Transmission    string
+	Drivetrain      string
 }
 
 type CarDetailView struct {

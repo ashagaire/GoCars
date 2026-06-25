@@ -58,6 +58,7 @@
     font-size: 12px;
 }
 
+/* Mobile */
 @media (max-width: 600px) {
     .hero-block {
         color: aliceblue;
