@@ -64,17 +64,122 @@ p {
     color: #2d7ae5;
 }
 
+
 .search {
+    background:white;
+    padding:24px;
+    border-radius:12px;
+
     border: 2px solid #89afe0;
     border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 20px 20px;
     padding: 20px 20px;
-    font-size: 24px;
-    font-weight: 700;
-    color: #2d7ae5;
+    
 }
 
+.filter-header h4{
+    margin:0;
+    margin-bottom:24px;
+    font-size:28px;
+    color:#2563eb;
+}
+.filter-form{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
+
+.search-box{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.search-box label{
+    font-size:18px;
+    font-weight:600;
+    color:#222;
+}
+
+.search-box input {
+    width:80%;
+    max-width:500px;
+    padding:12px 16px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.manufacturer-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+}
+
+.manufacturer-list h5{
+    width:100%;
+    margin:0;
+    color:#222;
+}
+
+.manufacturer-list label{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:16px;
+    color:#333;
+}
+
+.category-year{
+    display:flex;
+    gap:32px;
+    align-items:flex-end;
+}
+
+.category-box{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+.year-box{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+.year-inputs{
+    display:flex;
+    gap:10px;
+}
+
+button{
+    width: 25%;
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 24px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+button:hover{
+    background:#1d4ed8;
+}
+
+.filter-actions{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.clear-link{
+    color:#666;
+    text-decoration:none;
+}
+
+.clear-link:hover{
+    color:#2563eb;
+}
 .car-collection {
     border: 2px solid #89afe0;
     border-radius: 12px;

@@ -5,41 +5,46 @@
         <h4> Advanced Search & Filter </h4>
     </div>
     <form class="filter-form" method="GET" action="/">
-        <div class="filter-field">   
-            <label>Search</label>
+        <div class="search-box">   
+            <label for="search">Search</label>
             <input type="text" name="q" placeholder="Search cars..." value="{{.Filter.Query}}">
         </div>
-        <a href="/" class="clear-link">Clear filters</a>
-        <fieldset>
-            <legend>Manufacturers</legend>
+        
+        <div class="manufacturer-list">
+            <h5>Manufacturers</h5>
             {{range .Manufacturers}}
             <label>
                 <input type="checkbox" name="manufacturer_id" value="{{.ID}}" {{if isSelected $.Filter.ManufacturerIDs .ID}} checked {{end}}>
                 {{.Name}}
             </label>
             {{end}}
-        </fieldset>
+        </div>
         
-        <label> Category   
-        <select name="category_id">
-            <option value="">Any Category</option>
-            {{range .Categories}}
-            <option value="{{.ID}}" {{if isSelected $.Filter.CategoryIDs .ID}} selected {{end}}>
-                {{.Name}}
-            </option>
-            {{end}}
-        </select>
-        </label>            
-            
-        <div class="year-group">
-            <legend>Year Range</legend>
-            <input type="number" name="year_from" placeholder="From"  value="{{if ne .Filter.YearFrom 0}}{{.Filter.YearFrom}}{{end}}" >
-            <span>-</span>
-            <input type="number" name="year_to" placeholder="To" value="{{if ne .Filter.YearTo 0}}{{.Filter.YearTo}}{{end}}">
+        <div class="category-year">
+            <div class="catebory-box">
+                <h5> Category </h5>
+                <select name="category_id">
+                    <option value="">Any Category</option>
+                    {{range .Categories}}
+                    <option value="{{.ID}}" {{if isSelected $.Filter.CategoryIDs .ID}} selected {{end}}>
+                        {{.Name}}
+                    </option>
+                    {{end}}
+                </select>
+            </div>
+
+            <div class="year-box">
+                <h5>Year Range</h5>
+                <div class="year-inputs">
+                    <input type="number" name="year_from" placeholder="From"  value="{{if ne .Filter.YearFrom 0}}{{.Filter.YearFrom}}{{end}}" >
+                    <span>-</span>
+                    <input type="number" name="year_to" placeholder="To" value="{{if ne .Filter.YearTo 0}}{{.Filter.YearTo}}{{end}}">
+                </div>
+            </div>
         </div>
         
         <button type="submit">Search</button>
-        
+        <a href="/" class="clear-link">Clear filters</a>
         
     </form>
 </section>    
