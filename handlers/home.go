@@ -8,14 +8,11 @@ import (
 	"net/http"
 )
 
-var homeTemplate = template.Must(
-	template.New("home.html").Funcs(template.FuncMap{
-		"isSelected": isSelected,
-	}).ParseFiles("templates/home.html"))
-
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
+	templates, err := template.New("").Funcs(template.FuncMap{
+		"isSelected": isSelected,
+	}).ParseGlob("templates/*.html")
 
-	templates, err := template.ParseGlob("templates/*.html")
 	if err != nil {
 		log.Fatalf("Error parsing templates: %v", err)
 	}

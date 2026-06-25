@@ -3,6 +3,33 @@
 <div>
     <div class="search">
         <p> Here goes search feature </p>
+         <form method="GET" action="/">
+            <input type="text" name="q" placeholder="Search cars..." value="{{.Filter.Query}}">
+            
+            <h3>Manufacturers</h3>
+            {{range .Manufacturers}}
+            <label>
+                <input type="checkbox" name="manufacturer_id" value="{{.ID}}" {{if isSelected $.Filter.ManufacturerIDs .ID}} checked {{end}}>
+                {{.Name}}
+            </label>
+            {{end}}
+
+            <h3>Categories</h3>
+            {{range .Categories}}
+            <label>
+                <input type="checkbox" name="category_id" value="{{.ID}}" {{if isSelected $.Filter.CategoryIDs .ID}} checked {{end}}>
+                {{.Name}}
+            </label>
+            {{end}}
+
+            <h3>Year Range</h3>
+            <input type="number" name="year_from" placeholder="From"  value="{{if ne .Filter.YearFrom 0}}{{.Filter.YearFrom}}{{end}}" >
+            <input type="number" name="year_to" placeholder="To" value="{{if ne .Filter.YearTo 0}}{{.Filter.YearTo}}{{end}}">
+
+            <button type="submit">Search</button>
+            <a href="/">Clear filters</a>
+
+        </form>
     </div>
 </div>
 
