@@ -1,12 +1,17 @@
 package handlers
 
 import (
-	"html/template"
-	"net/http"
-	"log"
 	"car-viewer/models"
 	"car-viewer/services"
+	"html/template"
+	"log"
+	"net/http"
 )
+
+var homeTemplate = template.Must(
+	template.New("home.html").Funcs(template.FuncMap{
+		"isSelected": isSelected,
+	}).ParseFiles("templates/home.html"))
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -34,14 +39,33 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	allManufacturer := len(manufacturers)
-	allCategories:= len(categories)
-	
-	carViews := services.BuildCarViews(cars, manufacturers, categories)
+	allCategories := len(categories)
+
+	query := r.URL.Query().Get("q")
+	yearFrom := r.URL.Query().Get("year_from")
+	yearTo := r.URL.Query().Get("year_to")
+	manufacturerIDs := r.URL.Query()["manufacturer_id"]
+	categoryIDs := r.URL.Query()["category_id"]
+
+	filters := models.CarFilters{
+		Query:           query,
+		ManufacturerIDs: ParseIDs(manufacturerIDs),
+		CategoryIDs:     ParseIDs(categoryIDs),
+		YearFrom:        ParseNumber(yearFrom),
+		YearTo:          ParseNumber(yearTo),
+	}
+
+	filterCars := services.FilterCars(cars, filters)
+	filterCarViews := services.BuildCarViews(filterCars, manufacturers, categories)
+
 	pageData := models.PageData{
-		Cars: carViews,
 		AllManufacture: allManufacturer,
-		AllCategories: allCategories,
-		ActivePage: "home",
+		AllCategories:  allCategories,
+		ActivePage:     "home",
+		Cars:           filterCarViews,
+		Manufacturers:  manufacturers,
+		Categories:     categories,
+		Filter:         filters,
 	}
 
 	err = templates.ExecuteTemplate(w, "home", pageData)
@@ -49,5 +73,4 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
 }
