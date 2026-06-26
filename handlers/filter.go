@@ -1,10 +1,9 @@
 package handlers
 
 import (
-	"net/http"
-
 	"car-viewer/models"
-	"car-viewer/services"
+	"car-viewer/utils"
+	"net/http"
 )
 
 func isSelected(ids []int, id int) bool {
@@ -29,12 +28,12 @@ func getQuery(r *http.Request, filters *models.CarFilters) {
 
 	*filters = models.CarFilters{
 		Query:           query,
-		ManufacturerIDs: services.ParseIDs(manufacturerIDs),
-		CategoryID:      services.ParseNumber(categoryID),
-		YearFrom:        services.ParseNumber(yearFrom),
-		YearTo:          services.ParseNumber(yearTo),
-		HorsepowerFrom:  services.ParseNumber(hpFrom),
-		HorsepowerTo:    services.ParseNumber(hpTo),
+		ManufacturerIDs: utils.ParseIDs(manufacturerIDs),
+		CategoryID:      utils.ParseNumber(categoryID),
+		YearFrom:        utils.ParseNumber(yearFrom),
+		YearTo:          utils.ParseNumber(yearTo),
+		HorsepowerFrom:  utils.ParseNumber(hpFrom),
+		HorsepowerTo:    utils.ParseNumber(hpTo),
 		Transmission:    transmission,
 		Drivetrain:      drivetrain,
 	}
