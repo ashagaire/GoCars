@@ -1,10 +1,9 @@
 package services
 
 import (
+	"car-viewer/models"
 	"encoding/json"
 	"net/http"
-
-	"car-viewer/models"
 )
 
 func GetCars() ([]models.Car, error) {

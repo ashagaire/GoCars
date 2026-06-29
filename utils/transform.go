@@ -24,7 +24,7 @@ func ParseNumber(strNumber string) int {
 	return number
 }
 
-func containsInt(ints []int, n int) bool {
+func ContainsInt(ints []int, n int) bool {
 	for _, i := range ints {
 		if i == n {
 			return true
@@ -33,6 +33,6 @@ func containsInt(ints []int, n int) bool {
 	return false
 }
 
-func containsIgnoreCase(str, substr string) bool {
+func ContainsIgnoreCase(str, substr string) bool {
 	return strings.Contains(strings.ToLower(str), strings.ToLower(substr))
 }

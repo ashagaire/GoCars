@@ -18,13 +18,13 @@ func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categ
 	var carViews []models.CarView
 	for _, car := range cars {
 		carView := models.CarView{
-			ID:           car.ID,
-			Name:         car.Name,
-			Manufacturer: manufacturerMap[car.ManufacturerID],
-			Category:     categoryMap[car.CategoryID],
-			Year:         car.Year,
+			ID:             car.ID,
+			Name:           car.Name,
+			Manufacturer:   manufacturerMap[car.ManufacturerID],
+			Category:       categoryMap[car.CategoryID],
+			Year:           car.Year,
 			Specifications: car.Specifications,
-			Image:        car.Image,
+			Image:          car.Image,
 		}
 
 		carViews = append(carViews, carView)
@@ -46,25 +46,25 @@ func BuildCarDetailsViews(carData models.Car, recommendedCars []models.Car, manu
 	var RecommendedCarsViews []models.CarView
 	for _, car := range recommendedCars {
 		carView := models.CarView{
-			ID:           car.ID,
-			Name:         car.Name,
-			Manufacturer: manufacturerMap[car.ManufacturerID],
-			Category:     categoryMap[car.CategoryID],
-			Year:         car.Year,
+			ID:             car.ID,
+			Name:           car.Name,
+			Manufacturer:   manufacturerMap[car.ManufacturerID],
+			Category:       categoryMap[car.CategoryID],
+			Year:           car.Year,
 			Specifications: car.Specifications,
-			Image:        car.Image,
+			Image:          car.Image,
 		}
 
 		RecommendedCarsViews = append(RecommendedCarsViews, carView)
 	}
 	carDetalsView := models.CarDetailView{
-		ID:             carData.ID,
-		Name:           carData.Name,
-		Manufacturer:   manufacturerMap[carData.ManufacturerID],
-		Category:       categoryMap[carData.CategoryID],
-		Year:             carData.Year,
-		ImageURL:         carData.Image,
-		Specifications: carData.Specifications,
+		ID:              carData.ID,
+		Name:            carData.Name,
+		Manufacturer:    manufacturerMap[carData.ManufacturerID],
+		Category:        categoryMap[carData.CategoryID],
+		Year:            carData.Year,
+		ImageURL:        carData.Image,
+		Specifications:  carData.Specifications,
 		RecommendedCars: RecommendedCarsViews,
 	}
 	return carDetalsView

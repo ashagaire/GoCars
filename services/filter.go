@@ -2,6 +2,7 @@ package services
 
 import (
 	"car-viewer/models"
+	"car-viewer/utils"
 	"strconv"
 	"strings"
 )
@@ -12,7 +13,7 @@ func FilterCars(cars []models.Car, filters models.CarFilters) []models.Car {
 		if !matchesQuery(car, filters.Query) {
 			continue
 		}
-		if len(filters.ManufacturerIDs) != 0 && !utils.containsInt(filters.ManufacturerIDs, car.ManufacturerID) {
+		if len(filters.ManufacturerIDs) != 0 && !utils.ContainsInt(filters.ManufacturerIDs, car.ManufacturerID) {
 			continue
 		}
 		if filters.CategoryID != 0 && filters.CategoryID != car.CategoryID {
@@ -33,11 +34,11 @@ func FilterCars(cars []models.Car, filters models.CarFilters) []models.Car {
 			continue
 		}
 		if filters.Transmission != "" &&
-			!utils.containsIgnoreCase(car.Specifications.Transmission, filters.Transmission) {
+			!utils.ContainsIgnoreCase(car.Specifications.Transmission, filters.Transmission) {
 			continue
 		}
 		if filters.Drivetrain != "" &&
-			!utils.containsIgnoreCase(car.Specifications.Drivetrain, filters.Drivetrain) {
+			!utils.ContainsIgnoreCase(car.Specifications.Drivetrain, filters.Drivetrain) {
 			continue
 		}
 		filtered = append(filtered, car)
@@ -50,5 +51,5 @@ func matchesQuery(car models.Car, query string) bool {
 	if query == "" {
 		return true
 	}
-	return utils.containsIgnoreCase(car.Name, query) || utils.containsIgnoreCase(car.Specifications.Engine, query) || utils.containsIgnoreCase(strconv.Itoa(car.Specifications.Horsepower), query) || utils.containsIgnoreCase(car.Specifications.Transmission, query) || utils.containsIgnoreCase(car.Specifications.Drivetrain, query)
+	return utils.ContainsIgnoreCase(car.Name, query) || utils.ContainsIgnoreCase(car.Specifications.Engine, query) || utils.ContainsIgnoreCase(strconv.Itoa(car.Specifications.Horsepower), query) || utils.ContainsIgnoreCase(car.Specifications.Transmission, query) || utils.ContainsIgnoreCase(car.Specifications.Drivetrain, query)
 }
