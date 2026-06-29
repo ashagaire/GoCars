@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func UpdateHistory(w http.ResponseWriter, r *http.Request, carID int) {
+func UpdateHistory(w http.ResponseWriter, r *http.Request, carID int) []int {
 	history := utils.GetHistory(r)
 	history = utils.RemoveID(history, carID)
 	history = append(history, carID)
@@ -13,4 +13,5 @@ func UpdateHistory(w http.ResponseWriter, r *http.Request, carID int) {
 		history = history[1:]
 	}
 	utils.SaveHistory(w, history)
+	return history
 }

@@ -30,9 +30,8 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	services.UpdateHistory(w, r, carID)
 
-	recommendedCars, err := services.GetRecommendedCars()
+	cars, err := services.GetCars()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -50,7 +49,12 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	carViews := services.BuildCarDetailsViews(carData, recommendedCars, manufacturers, categories)
+	allCars := services.BuildCarViews(cars, manufacturers, categories)
+	history := services.UpdateHistory(w, r, carID)
+
+	recommendedCars := services.RecommendCars(carID, history, allCars)
+
+	carViews := services.BuildCarDetailsView(carData, recommendedCars, manufacturers, categories)
 	carDetailPageData := models.CarDetailView{
 		ID:              carViews.ID,
 		Name:            carViews.Name,
