@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
@@ -16,14 +17,21 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatalf("Error parsing templates: %v", err)
 	}
-	carId := r.URL.Query().Get("id")
+	carIdStr := r.URL.Query().Get("id")
 
-	carData, err := services.GetCarbyID(carId)
+	carData, err := services.GetCarbyID(carIdStr)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	recommendedCars, err := services.GetRecommendedCars()
+
+	carID, err := strconv.Atoi(carIdStr)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	cars, err := services.GetCars()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -41,15 +49,20 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	carViews := services.BuildCarDetailsViews(carData, recommendedCars, manufacturers, categories)
+	allCars := services.BuildCarViews(cars, manufacturers, categories)
+	history := services.UpdateHistory(w, r, carID)
+
+	recommendedCars := services.RecommendCars(carID, history, allCars)
+
+	carViews := services.BuildCarDetailsView(carData, recommendedCars, manufacturers, categories)
 	carDetailPageData := models.CarDetailView{
-		ID:             carViews.ID,
-		Name:           carViews.Name,
-		Manufacturer:   carViews.Manufacturer,
-		Category:       carViews.Category,
-		Year:             carViews.Year,
-		ImageURL:         carViews.ImageURL,
-		Specifications: carViews.Specifications,
+		ID:              carViews.ID,
+		Name:            carViews.Name,
+		Manufacturer:    carViews.Manufacturer,
+		Category:        carViews.Category,
+		Year:            carViews.Year,
+		ImageURL:        carViews.ImageURL,
+		Specifications:  carViews.Specifications,
 		RecommendedCars: carViews.RecommendedCars,
 	}
 

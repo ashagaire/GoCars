@@ -80,3 +80,8 @@ type CarDetailView struct {
 //type CompareView struct {}
 
 //type RecommendationView struct {}
+
+type ScoredCar struct {
+	Car   CarView
+	Score int
+}
