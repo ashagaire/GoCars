@@ -13,6 +13,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		"isSelected": isSelected,
 	}).ParseGlob("templates/*.html")
 	if err != nil {
+		InternalServerError(w, r, err)
 		log.Fatalf("Error parsing templates: %v", err)
 	}
 
@@ -53,8 +54,9 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	err = templates.ExecuteTemplate(w, "home", pageData)
+	
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		InternalServerError(w, r, err)
 		return
 	}
 }

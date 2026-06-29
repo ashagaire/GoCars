@@ -9,6 +9,7 @@ import (
 )
 
 func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
+	// templates, err := template.ParseGlob("templates/*.html")
 
 	templates, err := template.New("").Funcs(template.FuncMap{
 		"isSelected": isSelected,
@@ -20,7 +21,7 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 
 	carData, err := services.GetCarbyID(carId)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		InternalServerError(w, r, err)
 		return
 	}
 	recommendedCars, err := services.GetRecommendedCars()
@@ -55,7 +56,7 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 
 	err = templates.ExecuteTemplate(w, "CarDetails", carDetailPageData)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		InternalServerError(w, r, err)
 		return
 	}
 
