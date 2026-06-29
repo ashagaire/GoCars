@@ -33,12 +33,11 @@ func GetHistory(r *http.Request) []int {
 
 	var history []int
 	for _, idStr := range ids {
-		id, err := strconv.Atoi(idStr)
+		number, err := strconv.Atoi(idStr)
 		if err != nil {
 			continue
 		}
-
-		history = append(history, id)
+		history = append(history, number)
 	}
 	return history
 }
