@@ -1,0 +1,67 @@
+.hero-text {
+
+    color: #2d7ae5;
+
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.list-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2d7ae5;
+    border-bottom: 2px solid #e4edf8;
+    padding: 20px 0px 4px 0px;
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    margin: 20px 0;
+}
+
+.manufacturer-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 15px;
+    text-align: left;
+    background-color: #ffffff;
+}
+
+/* Header Row */
+.manufacturer-table thead tr {
+    background-color: #4874f8;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.manufacturer-table th,
+.manufacturer-table td {
+    padding: 14px 20px;
+}
+
+.manufacturer-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s ease;
+}
+
+.manufacturer-table tbody tr:nth-of-type(even) {
+    background-color: #f8fafc;
+}
+
+.manufacturer-table tbody tr:last-of-type {
+    border-bottom: none;
+}
+
+.manufacturer-table tbody tr:hover {
+    background-color: #f1f5f9;
+}

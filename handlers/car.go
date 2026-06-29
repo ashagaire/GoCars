@@ -16,13 +16,16 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 		"isSelected": isSelected,
 	}).ParseGlob("templates/*.html")
 	if err != nil {
-		log.Fatalf("Error parsing templates: %v", err)
+		log.Printf("Error parsing templates: %v", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+
+		return
 	}
 	carIdStr := r.URL.Query().Get("id")
 
 	carData, err := services.GetCarbyID(carIdStr)
 	if err != nil {
-		InternalServerError(w, r, err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
@@ -69,7 +72,8 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 
 	err = templates.ExecuteTemplate(w, "CarDetails", carDetailPageData)
 	if err != nil {
-		InternalServerError(w, r, err)
+		log.Printf("ERROR: Executing template failed: %v", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 

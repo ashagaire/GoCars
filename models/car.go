@@ -54,6 +54,12 @@ type PageData struct {
 	Filter        CarFilters
 }
 
+type ManufacturerData struct {
+	AllManufacture []Manufacturer
+	ActivePage     string
+	TotalManufacturer int
+}
+
 type CarFilters struct {
 	Query           string
 	ManufacturerIDs []int
