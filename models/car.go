@@ -30,12 +30,13 @@ type Category struct {
 }
 
 type CarView struct {
-	ID           int
-	Name         string
-	Manufacturer string
-	Category     string
-	Year         int
-	Image        string
+	ID             int
+	Name           string
+	Manufacturer   string
+	Category       string
+	Year           int
+	Specifications Specifications
+	Image          string
 }
 
 type PageData struct {
@@ -66,13 +67,14 @@ type CarFilters struct {
 }
 
 type CarDetailView struct {
-	ID             int
-	Name           string
-	Manufacturer   string
-	Category       string
-	Year           int
-	ImageURL       string
-	Specifications Specifications
+	ID              int
+	Name            string
+	Manufacturer    string
+	Category        string
+	Year            int
+	ImageURL        string
+	Specifications  Specifications
+	RecommendedCars []CarView
 }
 
 //type CompareView struct {}

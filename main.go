@@ -3,8 +3,8 @@ package main
 import (
 	"car-viewer/handlers"
 	"fmt"
-	"net/http"
 	"log"
+	"net/http"
 )
 
 func main() {
@@ -18,6 +18,7 @@ func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", assetsServer))
 
 	http.HandleFunc("/", handlers.HomeHandler)
+	http.HandleFunc("/car", handlers.CarDetailsPageHandler)
 	fmt.Println("Go server running at http://localhost:8080")
 	err1 := http.ListenAndServe(":8080", nil)
 	log.Fatalln(err1)

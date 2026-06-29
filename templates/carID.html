@@ -1,0 +1,61 @@
+{{define "CarID"}}
+<div class="details-block">
+  <div class="details-car-content">
+
+
+
+    <h1 style="color: #0840ea;  font-size: 32px; font-weight: 500px;">{{.Name}}</h1>
+
+
+    <div class="info-cars" style="margin-bottom: 10px;">
+      <div>
+        <p class="info-cars-value">{{.Manufacturer}}</p>
+        <p style="color: #7a7b7e; margin-top: 8px; font-size: 16px;">Manufacturer </p>
+      </div>
+      <div>
+        <p class="info-cars-value">{{.Category}}</p>
+        <p style="color: #7a7b7e; margin-top: 8px; font-size: 16px;">Category </p>
+      </div>
+    </div>
+
+
+    <div class="info-cars">
+      <p class="info-cars-title"> <i class="fa-solid fa-gears"></i>
+        Engine </p>
+      <span class="info-cars-value">{{.Specifications.Engine}}</span>
+    </div>
+
+    <div class="info-cars">
+      <p class="info-cars-title"><i class="fa-solid fa-bolt"></i> Horsepower </p>
+      <span class="info-cars-value">{{.Specifications.Horsepower}} HP</span>
+    </div>
+
+    <div class="info-cars">
+      <p class="info-cars-title"><i class="fa-solid fa-gauge-high"></i> Transmission </p>
+      <span class="info-cars-value">{{.Specifications.Transmission}}</span>
+    </div>
+
+    <div class="info-cars">
+      <p class="info-cars-title"><i class="fa-solid fa-car"></i> Drivetrain </p>
+      <span class="info-cars-value">{{.Specifications.Drivetrain}}</span>
+    </div>
+
+
+  </div>
+  <div class="detail-car-image-container">
+    <img src="/api-car-images/{{.ImageURL}}" class="detail-car-image" />
+  </div>
+
+</div>
+
+<div class="car-collection">
+  <div class="collection-hero">
+    <p class="">Recommended Cars</p>
+    <p class="total-cars">{{ len .RecommendedCars }} Cars</p>
+  </div>
+  <div class="car-grid">
+    {{range .RecommendedCars}} {{template "carCard" .}} {{end}}
+  </div>
+</div>
+
+{{end}}
