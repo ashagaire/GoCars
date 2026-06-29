@@ -12,16 +12,12 @@
 
 <body>
     {{template "header" .ActivePage}}
+    {{template "hero" .}}
 
-    <div>
-        {{template "hero" .}}
-
+    <main class="page-container">
         {{template "search" .}}
         {{template "carCollection" .}}
-
-    </div>
-
-
+    </main>
 
 </body>
 

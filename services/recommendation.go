@@ -12,14 +12,6 @@ const (
 	viewedPenalty      = 2
 )
 
-func GetViewedCars(history []int, carMap map[int]models.CarView) []models.CarView {
-	viewedCars := []models.CarView{}
-	for _, id := range history {
-		viewedCars = append(viewedCars, carMap[id])
-	}
-	return viewedCars
-}
-
 func BuildUserPreference(viewedCars []models.CarView) models.UserPreference {
 	preference := models.UserPreference{
 		Category:     make(map[string]int),
@@ -62,13 +54,11 @@ func TopCars(scoredCars []models.ScoredCar, limit int) []models.CarView {
 	return result
 }
 
-func RecommendCars(currentCarID int, history []int, allCars []models.CarView) []models.CarView {
+func RecommendCars(currentCarID int, history []int, allCars []models.CarView, viewedCars []models.CarView) []models.CarView {
 	if len(history) == 0 {
 		history = []int{currentCarID}
 	}
 
-	carMap := BuildCarMap(allCars)
-	viewedCars := GetViewedCars(history, carMap)
 	preference := BuildUserPreference(viewedCars)
 	scoredCars := make([]models.ScoredCar, 0, len(allCars))
 	for _, car := range allCars {

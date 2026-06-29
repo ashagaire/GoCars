@@ -55,8 +55,8 @@ type PageData struct {
 }
 
 type ManufacturerData struct {
-	AllManufacture []Manufacturer
-	ActivePage     string
+	AllManufacture    []Manufacturer
+	ActivePage        string
 	TotalManufacturer int
 }
 
@@ -81,6 +81,7 @@ type CarDetailView struct {
 	ImageURL        string
 	Specifications  Specifications
 	RecommendedCars []CarView
+	RecentCars      []CarView
 }
 
 //type CompareView struct {}

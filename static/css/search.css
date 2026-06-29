@@ -1,28 +1,23 @@
 .search{
-    max-width: 1100px;
-    margin: auto;
-    margin-bottom: 20px;
+    max-width:1070px;
+    margin:6px auto 0px;
+    padding:20px 24px;
     background:white;
-    border:1px solid var(--border);
     border-radius:16px;
-    box-shadow:var(--shadow);
-    padding:32px;
+    box-shadow:
+        0 6px 18px rgba(0,0,0,.08);
+    border:1px solid #edf1f7;
 }
 .search h5{
     margin-bottom:14px;
     font-size:15px;
 }
-.filter-header h4{
-    margin:0 0 28px;
-    font-size:30px;
-    font-weight: 700;
-    color:#1f2937;
-}
+
 .filter-form{
     max-width: 1100px;
     display:flex;
     flex-direction:column;
-    gap:26px;
+    gap:18px;
 }
 .filter-form label{
     font-size:15px;
@@ -43,7 +38,7 @@
     padding:0 16px;
     border:1px solid #dbe4f0;
     border-radius:14px;
-    height: 54px;
+    height: 46px;
 }
 
 .search-input i{
@@ -124,7 +119,6 @@
     border-color:#2563eb;
 }
 
-.search-box,
 .manufacturer-list{
     padding-bottom:24px;
     border-bottom:1px solid var(--border);
@@ -133,15 +127,20 @@
 /* ===== Specifications ===== */
 
 .spec-grid{
+
     display:grid;
+
     grid-template-columns:
-        180px
-        220px
-        190px
-        210px
-        200px;
-    gap:24px;
-    margin-top:24px;
+
+        1fr
+        1.2fr
+        1fr
+        1fr
+        1fr;
+
+    gap:18px;
+
+    margin-top:18px;
 }
 
 .spec-grid > div{
@@ -188,17 +187,18 @@
 }
 
 
-.horsepower-inputs input{
-    width:95px;
+.horsepower-inputs{
+    display:flex;
+    gap:8px;
 }
 
+.horsepower-inputs input{
+    flex:1;
+}
 .horsepower-inputs span{
     color:#6b7280;
 }
 
-.year-box{
-    width: 320px;
-}
 .year-inputs{
     display:flex;
     align-items:center;
@@ -212,7 +212,7 @@
 }
 
 .year-inputs input{
-    width:85px;
+    flex:1;
 }
 
 .year-inputs span{
@@ -220,7 +220,7 @@
 }
 
 .filter-actions{
-    margin-top:30px;
+    margin-top:20px;
     display:flex;
     justify-content:flex-end;
     align-items:center;
@@ -228,8 +228,8 @@
 }
 
 .filter-actions button{
-    min-width:140px;
-    height:50px;
+    min-width:120px;
+    height: 44px;
     border-radius:12px;
     font-weight:600;
     box-shadow: 0 10px 20px rgba(37,99,235,.18);

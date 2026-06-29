@@ -1,6 +1,7 @@
 package services
 
 import (
+	"car-viewer/models"
 	"car-viewer/utils"
 	"net/http"
 )
@@ -14,4 +15,12 @@ func UpdateHistory(w http.ResponseWriter, r *http.Request, carID int) []int {
 	}
 	utils.SaveHistory(w, history)
 	return history
+}
+
+func GetViewedCars(history []int, carMap map[int]models.CarView) []models.CarView {
+	viewedCars := []models.CarView{}
+	for _, id := range history {
+		viewedCars = append(viewedCars, carMap[id])
+	}
+	return viewedCars
 }

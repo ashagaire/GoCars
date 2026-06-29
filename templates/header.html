@@ -1,18 +1,18 @@
 {{ define "header"}}
 <header class="header">
-
-    <a href="/" class="logo"> <i class="fa-solid fa-car"></i> GoCars</a>
-    <nav class="nav-links">
-        <a href="/compare" class="{{if eq . `compare` }} selected {{end}}">
-            <i class="fa-solid fa-code-compare"></i>
-            Compare</a>
-        <a href="/manufacturers" class="{{if eq . `manufacturer` }} selected {{end}}">
-            <i class="fa-solid fa-industry"></i>
-            Manufacturar</a>
-        <!-- <a href="/stats" class="{{if eq . `stats` }} selected {{end}} ">
-            <i class="fa-solid fa-chart-column"></i>
-            Stats</a> -->
-    </nav>
-
+    <div class="header-content">
+        <a href="/" class="logo"> <i class="fa-solid fa-car"></i> GoCars</a>
+        <nav class="nav-links">
+            <a href="/compare" class="{{if eq . `compare` }} selected {{end}}">
+                <i class="fa-solid fa-code-compare"></i>
+                Compare</a>
+            <a href="/manufacturers" class="{{if eq . `manufacturer` }} selected {{end}}">
+                <i class="fa-solid fa-industry"></i>
+                Manufacturar</a>
+            <!-- <a href="/stats" class="{{if eq . `stats` }} selected {{end}} ">
+                <i class="fa-solid fa-chart-column"></i>
+                Stats</a> -->
+        </nav>
+    </div>
 </header>
 {{end}}

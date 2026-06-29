@@ -51,11 +51,20 @@
 <div class="car-collection">
   <div class="collection-hero">
     <p class="">Recommended Cars</p>
-    <p class="total-cars">{{ len .RecommendedCars }} Cars</p>
+    <!-- <p class="total-cars">{{ len .RecommendedCars }} Cars</p> -->
   </div>
   <div class="car-grid">
     {{range .RecommendedCars}} {{template "carCard" .}} {{end}}
   </div>
 </div>
+
+<section class="car-collection">
+    <div class="collection-hero">
+        <p class="">Recently Viewed Cars</p>
+    </div>
+    <div class="recently-viewed-grid">
+        {{range .RecentCars}} {{template "recentCarCard" .}} {{end}}
+    </div>
+</section>
 
 {{end}}
