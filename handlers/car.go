@@ -10,12 +10,16 @@ import (
 )
 
 func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
+	// templates, err := template.ParseGlob("templates/*.html")
 
 	templates, err := template.New("").Funcs(template.FuncMap{
 		"isSelected": isSelected,
 	}).ParseGlob("templates/*.html")
 	if err != nil {
-		log.Fatalf("Error parsing templates: %v", err)
+		log.Printf("Error parsing templates: %v", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+
+		return
 	}
 	carIdStr := r.URL.Query().Get("id")
 
@@ -68,6 +72,7 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 
 	err = templates.ExecuteTemplate(w, "CarDetails", carDetailPageData)
 	if err != nil {
+		log.Printf("ERROR: Executing template failed: %v", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}

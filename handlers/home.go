@@ -13,7 +13,10 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		"isSelected": isSelected,
 	}).ParseGlob("templates/*.html")
 	if err != nil {
-		log.Fatalf("Error parsing templates: %v", err)
+		log.Printf("Error parsing templates: %v", err)
+
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 
 	cars, err := services.GetCars()
@@ -53,7 +56,9 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	err = templates.ExecuteTemplate(w, "home", pageData)
+	
 	if err != nil {
+		log.Printf("ERROR: Executing template failed: %v", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}

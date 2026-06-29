@@ -1,0 +1,49 @@
+{{define "Manufacturar"}}
+<!doctype html>
+<html>
+
+<head>
+    <title>GoCars</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    {{template "header" .ActivePage}}
+    <div class="car-collection">
+
+        <div class="collection-hero">
+            <p class=""> Featured Manufacture Companies</p>
+            <!-- <p class="total-cars"> {{ .TotalManufacturer}}</p> -->
+        </div>
+        <div class="table-container">
+            <table class="manufacturer-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .AllManufacture}}
+                    <tr>
+                        <td>{{.Name}}</td>
+                        <td>{{.Country}}</td>
+                        <td>{{.FoundingYear}}</td>
+                    </tr>
+                    {{end}}
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </div>
+</body>
+
+</html>
+{{end}}
