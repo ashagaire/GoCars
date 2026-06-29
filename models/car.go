@@ -49,6 +49,21 @@ type PageData struct {
 	// 	SelectedCategory string
 
 	// Error string
+	Manufacturers []Manufacturer
+	Categories    []Category
+	Filter        CarFilters
+}
+
+type CarFilters struct {
+	Query           string
+	ManufacturerIDs []int
+	CategoryID      int
+	YearFrom        int
+	YearTo          int
+	HorsepowerFrom  int
+	HorsepowerTo    int
+	Transmission    string
+	Drivetrain      string
 }
 
 type CarDetailView struct {
@@ -61,8 +76,6 @@ type CarDetailView struct {
 	Specifications  Specifications
 	RecommendedCars []CarView
 }
-
-//type CarDetailView struct {}
 
 //type CompareView struct {}
 

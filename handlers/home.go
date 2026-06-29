@@ -1,16 +1,17 @@
 package handlers
 
 import (
-	"html/template"
-	"net/http"
-	"log"
 	"car-viewer/models"
 	"car-viewer/services"
+	"html/template"
+	"log"
+	"net/http"
 )
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-
-	templates, err := template.ParseGlob("templates/*.html")
+	templates, err := template.New("").Funcs(template.FuncMap{
+		"isSelected": isSelected,
+	}).ParseGlob("templates/*.html")
 	if err != nil {
 		log.Fatalf("Error parsing templates: %v", err)
 	}
@@ -34,14 +35,21 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	allManufacturer := len(manufacturers)
-	allCategories:= len(categories)
-	
-	carViews := services.BuildCarViews(cars, manufacturers, categories)
+	allCategories := len(categories)
+
+	var filters models.CarFilters
+	getQuery(r, &filters)
+	filterCars := services.FilterCars(cars, filters)
+	filterCarViews := services.BuildCarViews(filterCars, manufacturers, categories)
+
 	pageData := models.PageData{
-		Cars: carViews,
 		AllManufacture: allManufacturer,
-		AllCategories: allCategories,
-		ActivePage: "home",
+		AllCategories:  allCategories,
+		ActivePage:     "home",
+		Cars:           filterCarViews,
+		Manufacturers:  manufacturers,
+		Categories:     categories,
+		Filter:         filters,
 	}
 
 	err = templates.ExecuteTemplate(w, "home", pageData)
@@ -49,5 +57,4 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
 }
