@@ -1,3 +1,9 @@
+.details-container{
+    max-width:1600px;
+    margin:0 auto;
+    padding:0px 48px 0px;
+}
+
 .details-block {
     min-height: 250px;
     display: flex;

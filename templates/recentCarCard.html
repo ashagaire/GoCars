@@ -1,0 +1,26 @@
+{{ define "recentCarCard" }}
+
+<div class="recent-card">
+    <a href="/car?id={{.ID}}">
+        <div class="recent-image-container">
+            <span class="year">{{.Year}}</span>
+            <img src="/api-car-images/{{.Image}}" class="recent-image">
+        </div>
+    </a>
+
+    <div class="recent-content">
+        <p class="recent-maker">{{.Manufacturer}}</p>
+        <h3 class="recent-name">{{.Name}}</h3>
+        <div class="recent-meta">
+            <span>{{.Category}}</span>
+            •
+            <span>{{.Specifications.Horsepower}} HP</span>
+        </div>
+        <a href="/car?id={{.ID}}" class="recent-button">
+            View details
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+
+{{ end }}

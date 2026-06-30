@@ -55,10 +55,11 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 
 	allCars := services.BuildCarViews(cars, manufacturers, categories)
 	history := services.UpdateHistory(w, r, carID)
+	carMap := services.BuildCarMap(allCars)
+	viewedCars := services.GetViewedCars(history, carMap)
+	recommendedCars := services.RecommendCars(carID, history, allCars, viewedCars)
 
-	recommendedCars := services.RecommendCars(carID, history, allCars)
-
-	carViews := services.BuildCarDetailsView(carData, recommendedCars, manufacturers, categories)
+	carViews := services.BuildCarDetailsView(carData, recommendedCars, viewedCars, manufacturers, categories)
 	carDetailPageData := models.CarDetailView{
 		ID:              carViews.ID,
 		Name:            carViews.Name,
@@ -68,6 +69,7 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 		ImageURL:        carViews.ImageURL,
 		Specifications:  carViews.Specifications,
 		RecommendedCars: carViews.RecommendedCars,
+		RecentCars:      carViews.RecentCars,
 	}
 
 	err = templates.ExecuteTemplate(w, "CarDetails", carDetailPageData)

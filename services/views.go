@@ -25,7 +25,7 @@ func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categ
 	return carViews
 }
 
-func BuildCarDetailsView(carData models.Car, recommendedCars []models.CarView, manufacturers []models.Manufacturer, categories []models.Category) models.CarDetailView {
+func BuildCarDetailsView(carData models.Car, recommendedCars []models.CarView, viewedCars []models.CarView, manufacturers []models.Manufacturer, categories []models.Category) models.CarDetailView {
 	manufacturerMap := BuildManufacturerMap(manufacturers)
 	categoryMap := BuildCategoryMap(categories)
 
@@ -38,6 +38,7 @@ func BuildCarDetailsView(carData models.Car, recommendedCars []models.CarView, m
 		ImageURL:        carData.Image,
 		Specifications:  carData.Specifications,
 		RecommendedCars: recommendedCars,
+		RecentCars:      viewedCars,
 	}
 	return carDetalsView
 }

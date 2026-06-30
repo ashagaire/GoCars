@@ -1,3 +1,17 @@
+.hero{
+    width:100%;
+    background:#0b0b4b;
+}
+
+.hero-content{
+    max-width:1600px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0px 48px 8px;
+}
+
 .hero-text {
     font-size: 32px;
     font-weight: 600;
@@ -5,24 +19,15 @@
     color: #2d7ae5;
 }
 
-.hero-block {
-    /* min-height: 250px; */
-    color: aliceblue;
-    background-color: #0b0b4b;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    padding: 20px
+.hero-block-text{
+    flex:1;
+    max-width:560px;
 }
 
-.hero-block-text {
-    margin-left: 50px;
-}
-
-.hero-block img {
-    max-height: 300px;
-    border-radius: 12px;
+.hero-content img{
+    width:460px;
+    max-width:42%;
+    border-radius:16px; 
 }
 
 .hero-text-01 {
@@ -32,16 +37,22 @@
 
 .hero-text-02 {
     color: rgb(242, 245, 248);
-    font-size: 38px;
+    font-size:46px;
+    line-height:1.15;
+    margin:14px 0 18px;
 }
 
 .hero-text-03 {
     color: rgb(150, 154, 159);
-    font-size: 14px;
+    .hero-text-03{
+    font-size:16px;
+    line-height:1.7;
+    max-width:460px;
+}
 }
 
 .hero-numbers {
-    margin-top: 20px;
+    margin-top: 28px;
     display: flex;
     justify-content: start;
     gap: 32px;
@@ -50,7 +61,8 @@
 
 .hero-number-value {
     color: rgb(231, 233, 235);
-    font-size: 20px;
+    font-size: 22px;
+    font-weight:700;
 }
 
 .hero-number-title {

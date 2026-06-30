@@ -1,36 +1,34 @@
 {{define "hero"}}
-<div class="hero-block">
-    <div class="hero-block-text">
-        <p class="hero-text-01">Discover · Compare · Drive </p>
-
-        <h1 class="hero-text-02">Find the perfect car
-            <br>
-            for your
-            <span style="color: rgb(10, 140, 245);">lifestyle</span>
-        </h1>
-        <P class="hero-text-03"> Explore 10+ car models, compare specifications,
-            <br>
-            and get personalized recommendations.
-        </P>
-        <div class="hero-numbers">
-            <div>
-                <div class="hero-number-value">{{ len .Cars }}+</div>
-                <div class="hero-number-title">Cars</div>
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-block-text">
+            <p class="hero-text-01">Discover · Compare · Drive </p>
+            <h1 class="hero-text-02">Find the perfect car
+                <br>
+                for your
+                <span style="color: rgb(10, 140, 245);">lifestyle</span>
+            </h1>
+            <P class="hero-text-03"> Explore 10+ car models, compare specifications,
+                <br>
+                and get personalized recommendations.
+            </P>
+            <div class="hero-numbers">
+                <div>
+                    <div class="hero-number-value">{{ len .Cars }}+</div>
+                    <div class="hero-number-title">Cars</div>
+                </div>
+                <div>
+                    <div class="hero-number-value">{{.AllManufacture }}+</div>
+                    <div class="hero-number-title">Brands</div>
+                </div>
+                <div>
+                    <div class="hero-number-value">{{.AllCategories }}+</div>
+                    <div class="hero-number-title">Categories</div>
+                </div>
             </div>
-            <div>
-                <div class="hero-number-value">{{.AllManufacture }}+</div>
-                <div class="hero-number-title">Brands</div>
-            </div>
-            <div>
-                <div class="hero-number-value">{{.AllCategories }}+</div>
-                <div class="hero-number-title">Categories</div>
-            </div>
-
         </div>
-    </div>
-    <div>
         <img src="/assets/hero-car.jpeg" alt="Hero Car">
     </div>
+</section>
 
-</div>
 {{end}}
