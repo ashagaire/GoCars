@@ -1,7 +1,7 @@
-.details-container{
-    max-width:1600px;
-    margin:0 auto;
-    padding:0px 48px 0px;
+.details-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0px 48px 0px;
 }
 
 .details-block {
@@ -23,6 +23,8 @@
     border: 2px solid #eaf3fa;
     border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+
     overflow: hidden;
 }
 
@@ -79,6 +81,19 @@
 
     margin-top: 8px;
     font-size: 20px;
+    font-weight: 500px;
+}
+
+.manufacturer-info {
+    margin-top: 16px;
+    font-size: 16px;
+}
+
+.manufacture-info-cars-value {
+    color: black;
+
+    margin-top: 8px;
+    font-size: 18px;
     font-weight: 500px;
 }
 

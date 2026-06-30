@@ -4,7 +4,7 @@ import (
 	"car-viewer/models"
 )
 
-func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categories []models.Category) []models.CarView {
+func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categories []models.Category, comparedMap map[int]bool) []models.CarView {
 	manufacturerMap := BuildManufacturerMap(manufacturers)
 	categoryMap := BuildCategoryMap(categories)
 
@@ -13,11 +13,12 @@ func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categ
 		carView := models.CarView{
 			ID:             car.ID,
 			Name:           car.Name,
-			Manufacturer:   manufacturerMap[car.ManufacturerID],
+			Manufacturer:   manufacturerMap[car.ManufacturerID].Name,
 			Category:       categoryMap[car.CategoryID],
 			Year:           car.Year,
 			Specifications: car.Specifications,
 			Image:          car.Image,
+			IsCompared: 	comparedMap[car.ID],
 		}
 
 		carViews = append(carViews, carView)
@@ -28,11 +29,13 @@ func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categ
 func BuildCarDetailsView(carData models.Car, recommendedCars []models.CarView, viewedCars []models.CarView, manufacturers []models.Manufacturer, categories []models.Category) models.CarDetailView {
 	manufacturerMap := BuildManufacturerMap(manufacturers)
 	categoryMap := BuildCategoryMap(categories)
-
+	
 	carDetalsView := models.CarDetailView{
 		ID:              carData.ID,
 		Name:            carData.Name,
-		Manufacturer:    manufacturerMap[carData.ManufacturerID],
+		ManufacturerName:    manufacturerMap[carData.ManufacturerID].Name,
+		ManufacturerCountry:    manufacturerMap[carData.ManufacturerID].Country,
+		ManufacturerYear:    manufacturerMap[carData.ManufacturerID].FoundingYear,
 		Category:        categoryMap[carData.CategoryID],
 		Year:            carData.Year,
 		ImageURL:        carData.Image,
@@ -41,4 +44,25 @@ func BuildCarDetailsView(carData models.Car, recommendedCars []models.CarView, v
 		RecentCars:      viewedCars,
 	}
 	return carDetalsView
+}
+
+func BuildCarsCompareViews(cars []models.Car, manufacturers []models.Manufacturer, categories []models.Category) []models.CarView {
+	manufacturerMap := BuildManufacturerMap(manufacturers)
+	categoryMap := BuildCategoryMap(categories)
+
+	var carViews []models.CarView
+	for _, car := range cars {
+		carView := models.CarView{
+			ID:             car.ID,
+			Name:           car.Name,
+			Manufacturer:   manufacturerMap[car.ManufacturerID].Name,
+			Category:       categoryMap[car.CategoryID],
+			Year:           car.Year,
+			Specifications: car.Specifications,
+			Image:          car.Image,
+		}
+
+		carViews = append(carViews, carView)
+	}
+	return carViews
 }

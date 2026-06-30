@@ -1,0 +1,12 @@
+.compare-car-image {
+
+    height: 150px;
+    width: auto;
+    border-radius: 16px;
+}
+
+.car-image-row {
+    background-color: #f2f2f3;
+    color: #ffffff;
+    font-weight: 600;
+}

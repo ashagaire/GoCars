@@ -7,10 +7,10 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
-	// templates, err := template.ParseGlob("templates/*.html")
 
 	templates, err := template.New("").Funcs(template.FuncMap{
 		"isSelected": isSelected,
@@ -22,6 +22,16 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	carIdStr := r.URL.Query().Get("id")
+
+	comparedMap := make(map[int]bool)
+	if cookie, err := r.Cookie("compare_cars"); err == nil && cookie.Value != "" {
+		comparedIDs := strings.Split(cookie.Value, ",")
+		for _, id := range comparedIDs {
+			if idInt, err := strconv.Atoi(id); err == nil {
+            	comparedMap[idInt] = true
+       		}
+		}
+	}
 
 	carData, err := services.GetCarbyID(carIdStr)
 	if err != nil {
@@ -53,17 +63,21 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	allCars := services.BuildCarViews(cars, manufacturers, categories)
+	allCars := services.BuildCarViews(cars, manufacturers, categories, comparedMap)
 	history := services.UpdateHistory(w, r, carID)
 	carMap := services.BuildCarMap(allCars)
 	viewedCars := services.GetViewedCars(history, carMap)
 	recommendedCars := services.RecommendCars(carID, history, allCars, viewedCars)
+	manufacturerMap := services.BuildManufacturerMap(manufacturers)
+	currentMfg := manufacturerMap[carData.ManufacturerID]
 
 	carViews := services.BuildCarDetailsView(carData, recommendedCars, viewedCars, manufacturers, categories)
 	carDetailPageData := models.CarDetailView{
 		ID:              carViews.ID,
 		Name:            carViews.Name,
-		Manufacturer:    carViews.Manufacturer,
+		ManufacturerName:    currentMfg.Name,
+		ManufacturerCountry: currentMfg.Country,
+		ManufacturerYear:	currentMfg.FoundingYear,
 		Category:        carViews.Category,
 		Year:            carViews.Year,
 		ImageURL:        carViews.ImageURL,

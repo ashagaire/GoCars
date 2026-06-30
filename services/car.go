@@ -10,10 +10,10 @@ func BuildCarMap(cars []models.CarView) map[int]models.CarView {
 	return carMap
 }
 
-func BuildManufacturerMap(manufacturers []models.Manufacturer) map[int]string {
-	manufacturerMap := make(map[int]string)
+func BuildManufacturerMap(manufacturers []models.Manufacturer) map[int]models.Manufacturer {
+	manufacturerMap := make(map[int]models.Manufacturer)
 	for _, m := range manufacturers {
-		manufacturerMap[m.ID] = m.Name
+		manufacturerMap[m.ID] = m
 	}
 	return manufacturerMap
 }

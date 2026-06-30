@@ -10,28 +10,36 @@ import (
 	"net/http"
 )
 
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
+func ComparePageHandler(w http.ResponseWriter, r *http.Request) {
+
 	templates, err := template.New("").Funcs(template.FuncMap{
 		"isSelected": isSelected,
 	}).ParseGlob("templates/*.html")
 	if err != nil {
 		log.Printf("Error parsing templates: %v", err)
-
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	comparedMap := make(map[int]bool)
-	if cookie, err := r.Cookie("compare_cars"); err == nil && cookie.Value != "" {
-		comparedIDs := strings.Split(cookie.Value, ",")
-		for _, id := range comparedIDs {
+	var ids []int
+
+	cookie, err := r.Cookie("compare_cars")
+	if err == nil && cookie.Value != "" {
+		idStrings := strings.Split(cookie.Value, ",")
+		for _, id := range idStrings {
 			if idInt, err := strconv.Atoi(id); err == nil {
-            	comparedMap[idInt] = true
-       		}
+				ids = append(ids, idInt)
+			}
 		}
 	}
 
-	cars, err := services.GetCars()
+	if len(ids) == 0 {
+		 http.Redirect(w, r, "/", http.StatusSeeOther)
+        return
+	}
+
+
+	carsData, err := services.GetCompareCars(ids)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -49,30 +57,17 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	allManufacturer := len(manufacturers)
-	allCategories := len(categories)
-
-	var filters models.CarFilters
-	getQuery(r, &filters)
-	filterCars := services.FilterCars(cars, filters)
-
-	filterCarViews := services.BuildCarViews(filterCars, manufacturers, categories, comparedMap)
-
-	pageData := models.PageData{
-		AllManufacture: allManufacturer,
-		AllCategories:  allCategories,
-		ActivePage:     "home",
-		Cars:           filterCarViews,
-		Manufacturers:  manufacturers,
-		Categories:     categories,
-		Filter:         filters,
+	carViews := services.BuildCarsCompareViews(carsData, manufacturers, categories)
+	comparePageData := models.ComparePageData{
+		CompareCars:     carViews,
+		ActivePage:     "compare",
 	}
 
-	err = templates.ExecuteTemplate(w, "home", pageData)
-	
+	err = templates.ExecuteTemplate(w, "Compare", comparePageData)
 	if err != nil {
 		log.Printf("ERROR: Executing template failed: %v", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
 }

@@ -5,8 +5,8 @@
     color: #2d7ae5;
     border-bottom: 2px solid #e4edf8;
     padding: 20px 0px 4px 0px;
-    margin-bottom:28px;
-    padding-bottom:14px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
     font-size: 28px;
     font-weight: 600;
 
@@ -19,68 +19,68 @@
     padding: 0px 0px;
 }
 
-.recently-viewed-grid{
-    display:flex;
-    gap:20px;
-    overflow-x:auto;
-    padding-bottom:12px;
+.recently-viewed-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 12px;
 }
 
 
-.recent-card{
-    width:300px;
-    border:1px solid #e6edf8;
-    border-radius:12px;
-    overflow:hidden;
-    background:white;
-    box-shadow:0 2px 6px rgba(0,0,0,.08);
-    flex-shrink:0;
+.recent-card {
+    width: 300px;
+    border: 1px solid #e6edf8;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+    flex-shrink: 0;
 }
 
-.recent-image-container{
-    position:relative;
-    height:150px;
-    overflow:hidden;
+.recent-image-container {
+    position: relative;
+    height: 150px;
+    overflow: hidden;
 }
 
-.recent-image{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.recent-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.recent-content{
-    padding:14px;
+.recent-content {
+    padding: 14px;
 }
 
-.recent-maker{
-    color:#888;
-    font-size:13px;
-    margin:0;
+.recent-maker {
+    color: #888;
+    font-size: 13px;
+    margin: 0;
 }
 
-.recent-name{
-    margin:6px 0;
-    font-size:18px;
+.recent-name {
+    margin: 6px 0;
+    font-size: 18px;
 }
 
-.recent-meta{
-    font-size:13px;
-    color:#666;
-    margin-bottom:14px;
+.recent-meta {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 14px;
 }
 
-.recent-button{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:8px;
-    background:#2d7ae5;
-    color:white;
-    border-radius:18px;
-    padding:8px;
-    text-decoration:none;
-    font-weight:600;
+.recent-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: #2d7ae5;
+    color: white;
+    border-radius: 18px;
+    padding: 8px;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 .car-card {
@@ -186,7 +186,8 @@
     justify-content: space-around;
 }
 
-.car-details-buttons a {
+.car-details-buttons a,
+button {
     display: flex;
     justify-content: center;
     /* 2. Centers items horizontally */

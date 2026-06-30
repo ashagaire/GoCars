@@ -1,0 +1,91 @@
+{{define "Compare"}}
+<!doctype html>
+<html>
+
+<head>
+    <title>GoCars</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    {{template "header" .ActivePage}}
+    <div class="page-container">
+        <div class="collection-hero">
+            <p class=""> Cars Comparision</p>
+        </div>
+
+        <div class="table-container">
+            <table class="manufacturer-table">
+                <thead>
+                    <tr>
+                        <th class="car-image-row"></th>
+                        {{range .CompareCars}}
+                        <th class="car-image-row">
+                            <div class="">
+                                <img src="/api-car-images/{{.Image}}" class="compare-car-image" alt="{{.Name}}">
+                            </div>
+                        </th>
+                        {{end}}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="">Category</td>
+                        {{range .CompareCars}}
+                        <td>{{.Category}}</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <td class="">Manufacturer</td>
+                        {{range .CompareCars}}
+                        <td>{{.Manufacturer}}</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <td class="">Year</td>
+                        {{range .CompareCars}}
+                        <td>{{.Year}}</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <td class="feature-col">Engine</td>
+                        {{range .CompareCars}}
+                        <td>{{.Specifications.Engine}}</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <td class="feature-col">Horsepower</td>
+                        {{range .CompareCars}}
+                        <td class="stat-weight">{{.Specifications.Horsepower}} hp</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <td class="feature-col">Transmission</td>
+                        {{range .CompareCars}}
+                        <td>{{.Specifications.Transmission}}</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <td class="feature-col">Drivetrain</td>
+                        {{range .CompareCars}}
+                        <td>{{.Specifications.Drivetrain}}</td>
+                        {{end}}
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+
+    </div>
+
+</body>
+
+</html>
+{{end}}
