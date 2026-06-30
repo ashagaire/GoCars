@@ -2,9 +2,10 @@ package services
 
 import (
 	"car-viewer/models"
+	"car-viewer/utils"
 )
 
-func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categories []models.Category) []models.CarView {
+func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categories []models.Category, comparedIDs []int) []models.CarView {
 	manufacturerMap := BuildManufacturerMap(manufacturers)
 	categoryMap := BuildCategoryMap(categories)
 
@@ -18,6 +19,7 @@ func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categ
 			Year:           car.Year,
 			Specifications: car.Specifications,
 			Image:          car.Image,
+			Compared:       utils.ContainsInt(comparedIDs, car.ID),
 		}
 
 		carViews = append(carViews, carView)

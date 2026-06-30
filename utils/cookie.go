@@ -51,3 +51,34 @@ func RemoveID(history []int, carID int) []int {
 	}
 	return result
 }
+
+func SaveCompare(w http.ResponseWriter, compare []int) {
+	var ids []string
+	for _, id := range compare {
+		ids = append(ids, strconv.Itoa(id))
+	}
+
+	cookie := &http.Cookie{
+		Name:  "compare",
+		Value: strings.Join(ids, ","),
+		Path:  "/",
+	}
+	http.SetCookie(w, cookie)
+}
+
+func GetCompare(r *http.Request) []int {
+	cookie, err := r.Cookie("compare")
+	if err != nil {
+		return []int{}
+	}
+
+	var compare []int
+	for _, idStr := range strings.Split(cookie.Value, ",") {
+		id, err := strconv.Atoi(idStr)
+		if err != nil {
+			continue
+		}
+		compare = append(compare, id)
+	}
+	return compare
+}

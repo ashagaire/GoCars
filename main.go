@@ -16,12 +16,13 @@ func main() {
 
 	assetsServer := http.FileServer(http.Dir("assets"))
 	http.Handle("/assets/", http.StripPrefix("/assets/", assetsServer))
-
 	http.HandleFunc("/", handlers.HomeHandler)
 	http.HandleFunc("/car", handlers.CarDetailsPageHandler)
 	http.HandleFunc("/manufacturers", handlers.ManufacturerPageHandler)
+	http.HandleFunc("/compare", handlers.CompareHandler)
+	http.HandleFunc("/compare/add", handlers.AddCompareHandler)
+	http.HandleFunc("/compare/remove", handlers.RemoveCompareHandler)
 	fmt.Println("Go server running at http://localhost:8080")
 	err1 := http.ListenAndServe(":8080", nil)
 	log.Fatalln(err1)
 }
-

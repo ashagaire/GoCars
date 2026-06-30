@@ -3,6 +3,7 @@ package handlers
 import (
 	"car-viewer/models"
 	"car-viewer/services"
+	"car-viewer/utils"
 	"html/template"
 	"log"
 	"net/http"
@@ -53,7 +54,9 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	allCars := services.BuildCarViews(cars, manufacturers, categories)
+	comparedIDs := utils.GetCompare(r)
+
+	allCars := services.BuildCarViews(cars, manufacturers, categories, comparedIDs)
 	history := services.UpdateHistory(w, r, carID)
 	carMap := services.BuildCarMap(allCars)
 	viewedCars := services.GetViewedCars(history, carMap)

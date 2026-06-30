@@ -1,0 +1,144 @@
+{{define "comparison"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Compare Cars</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+{{template "header" .ActivePage}}
+
+<div class="page-container">
+
+    <div class="collection-hero">
+        <p>Compare Cars</p>
+    </div>
+
+    {{if eq (len .Cars) 0}}
+
+        <div class="empty-compare">
+
+            <i class="fa-solid fa-code-compare"></i>
+
+            <h2>No cars selected</h2>
+
+            <p>Select cars from the homepage to compare them.</p>
+
+            <a class="car-action" href="/">
+                Browse Cars
+            </a>
+
+        </div>
+
+    {{else}}
+
+    <div class="compare-table">
+
+        <div class="compare-row header">
+
+            <div class="feature-column"></div>
+
+            {{range .Cars}}
+
+            <div class="car-column">
+
+                <img src="/api-car-images/{{.Image}}" class="compare-image">
+
+                <h3>{{.Name}}</h3>
+
+                <form action="/compare/remove" method="POST">
+
+                    <input type="hidden" name="id" value="{{.ID}}">
+
+                    <button class="car-action">
+
+                        Remove
+
+                    </button>
+
+                </form>
+
+            </div>
+
+            {{end}}
+
+        </div>
+
+        <div class="compare-row">
+            <div class="feature-column">Manufacturer</div>
+
+            {{range .Cars}}
+            <div class="value-column">{{.Manufacturer}}</div>
+            {{end}}
+
+        </div>
+
+        <div class="compare-row">
+            <div class="feature-column">Category</div>
+
+            {{range .Cars}}
+            <div class="value-column">{{.Category}}</div>
+            {{end}}
+
+        </div>
+
+        <div class="compare-row">
+            <div class="feature-column">Year</div>
+
+            {{range .Cars}}
+            <div class="value-column">{{.Year}}</div>
+            {{end}}
+
+        </div>
+
+        <div class="compare-row">
+            <div class="feature-column">Engine</div>
+
+            {{range .Cars}}
+            <div class="value-column">{{.Specifications.Engine}}</div>
+            {{end}}
+
+        </div>
+
+        <div class="compare-row">
+            <div class="feature-column">Horsepower</div>
+
+            {{range .Cars}}
+            <div class="value-column">{{.Specifications.Horsepower}} HP</div>
+            {{end}}
+
+        </div>
+
+        <div class="compare-row">
+            <div class="feature-column">Transmission</div>
+
+            {{range .Cars}}
+            <div class="value-column">{{.Specifications.Transmission}}</div>
+            {{end}}
+
+        </div>
+
+        <div class="compare-row">
+            <div class="feature-column">Drivetrain</div>
+
+            {{range .Cars}}
+            <div class="value-column">{{.Specifications.Drivetrain}}</div>
+            {{end}}
+
+        </div>
+
+    </div>
+
+    {{end}}
+
+</div>
+
+</body>
+
+</html>
+{{end}}

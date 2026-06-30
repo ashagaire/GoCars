@@ -44,10 +44,33 @@
                 </div>
             </div>
             <div class="car-details-buttons">
-                <a href="/car?id={{.ID}}" style="">
-                    <i class="fa-solid fa-code-compare"></i>
-                    Compare </a>
-                <a href="/car?id={{.ID}}" style="">
+                {{if .Compared}}
+
+                <form action="/compare/remove" method="POST" class="compare-form">
+                    <input type="hidden" name="id" value="{{.ID}}">
+
+                    <button class="car-action" type="submit">
+                        <i class="fa-solid fa-check"></i>
+                        Compared
+                    </button>
+                </form>
+
+                {{else}}
+
+                <form action="/compare/add" method="POST" class="compare-form">
+                    <input type="hidden" name="id" value="{{.ID}}">
+
+                    <button class="car-action" type="submit">
+                        <i class="fa-solid fa-code-compare"></i>
+                        Compare
+                    </button>
+                </form>
+
+                {{end}}
+
+                <!-- <a href="/car?id={{.ID}}" style="">
+                     </a> -->
+                <a class="car-action" href="/car?id={{.ID}}" style="">
 
                     View details <i class="fa-solid fa-arrow-right"></i></a>
 

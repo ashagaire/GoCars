@@ -3,6 +3,7 @@ package handlers
 import (
 	"car-viewer/models"
 	"car-viewer/services"
+	"car-viewer/utils"
 	"html/template"
 	"log"
 	"net/http"
@@ -11,6 +12,7 @@ import (
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	templates, err := template.New("").Funcs(template.FuncMap{
 		"isSelected": isSelected,
+		"isCompared": utils.ContainsInt,
 	}).ParseGlob("templates/*.html")
 	if err != nil {
 		log.Printf("Error parsing templates: %v", err)
@@ -39,11 +41,12 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 	allManufacturer := len(manufacturers)
 	allCategories := len(categories)
+	comparedIDs := utils.GetCompare(r)
 
 	var filters models.CarFilters
 	getQuery(r, &filters)
 	filterCars := services.FilterCars(cars, filters)
-	filterCarViews := services.BuildCarViews(filterCars, manufacturers, categories)
+	filterCarViews := services.BuildCarViews(filterCars, manufacturers, categories, comparedIDs)
 
 	pageData := models.PageData{
 		AllManufacture: allManufacturer,
@@ -53,10 +56,11 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		Manufacturers:  manufacturers,
 		Categories:     categories,
 		Filter:         filters,
+		ComparedIDs:    comparedIDs,
 	}
 
 	err = templates.ExecuteTemplate(w, "home", pageData)
-	
+
 	if err != nil {
 		log.Printf("ERROR: Executing template failed: %v", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)

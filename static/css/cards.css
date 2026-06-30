@@ -176,36 +176,42 @@
 }
 
 
-.car-details-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    margin-bottom: 2px;
-    padding: 0px;
-    justify-content: space-around;
+.car-details-buttons{
+    display:flex;
+    gap:8px;
 }
 
-.car-details-buttons a {
-    display: flex;
-    justify-content: center;
-    /* 2. Centers items horizontally */
-    align-items: center;
-    /* 3. Centers items vertically */
-    gap: 8px;
-    text-decoration: none;
-    border-radius: 18px;
-    border: 1px solid #1876e8;
-    background-color: #2d7ae5;
-    font-weight: 800;
-    color: rgb(250, 251, 251);
-    padding: 6px 8px;
-    font-size: 14px;
+.compare-form{
+    flex:1;
+    margin:0;
+}
 
-    margin: 4px;
+.car-action{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    padding:6px 8px;
+    border-radius:18px;
+    border:1px solid #1876e8;
+    background:#2d7ae5;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+    box-shadow:none;
+    transform: none;
+}
 
-    width: 100%;
+.car-action:hover{
+    background:#1d4ed8;
+}
 
+.car-action:hover{
+    background:#1d4ed8;
 }
 
 /* Responsive Design for Mobile Screens */

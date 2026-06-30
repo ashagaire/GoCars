@@ -37,6 +37,7 @@ type CarView struct {
 	Year           int
 	Specifications Specifications
 	Image          string
+	Compared       bool
 }
 
 type PageData struct {
@@ -52,6 +53,8 @@ type PageData struct {
 	Manufacturers []Manufacturer
 	Categories    []Category
 	Filter        CarFilters
+
+	ComparedIDs []int
 }
 
 type ManufacturerData struct {
@@ -91,4 +94,8 @@ type CarDetailView struct {
 type ScoredCar struct {
 	Car   CarView
 	Score int
+}
+
+type ComparisonView struct {
+	Cars []CarView
 }
