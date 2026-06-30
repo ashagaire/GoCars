@@ -76,7 +76,9 @@ type CarFilters struct {
 type CarDetailView struct {
 	ID              int
 	Name            string
-	Manufacturer    string
+	ManufacturerName    string
+	ManufacturerCountry	string
+	ManufacturerYear	int
 	Category        string
 	Year            int
 	ImageURL        string

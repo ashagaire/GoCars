@@ -68,12 +68,16 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 	carMap := services.BuildCarMap(allCars)
 	viewedCars := services.GetViewedCars(history, carMap)
 	recommendedCars := services.RecommendCars(carID, history, allCars, viewedCars)
+	manufacturerMap := services.BuildManufacturerMap(manufacturers)
+	currentMfg := manufacturerMap[carData.ManufacturerID]
 
 	carViews := services.BuildCarDetailsView(carData, recommendedCars, viewedCars, manufacturers, categories)
 	carDetailPageData := models.CarDetailView{
 		ID:              carViews.ID,
 		Name:            carViews.Name,
-		Manufacturer:    carViews.Manufacturer,
+		ManufacturerName:    currentMfg.Name,
+		ManufacturerCountry: currentMfg.Country,
+		ManufacturerYear:	currentMfg.FoundingYear,
 		Category:        carViews.Category,
 		Year:            carViews.Year,
 		ImageURL:        carViews.ImageURL,

@@ -9,7 +9,7 @@
 
     <div class="info-cars" style="margin-bottom: 10px;">
       <div>
-        <p class="info-cars-value">{{.Manufacturer}}</p>
+        <p class="info-cars-value">{{.ManufacturerName}}</p>
         <p style="color: #7a7b7e; margin-top: 8px; font-size: 16px;">Manufacturer </p>
       </div>
       <div>
@@ -41,8 +41,19 @@
     </div>
 
 
+    <div class="manufacturer-info">
+      <p> Manufacturer Info</p>
+      <div class="info-cars">
+        <span class="manufacture-info-cars-value">{{.ManufacturerName}}</span>
+        <span class="manufacture-info-cars-value">{{.ManufacturerCountry}}</span>
+        <span class="manufacture-info-cars-value">{{.ManufacturerYear}}</span>
+      </div>
+    </div>
+
+
   </div>
   <div class="detail-car-image-container">
+    <span class="year">{{.Year}}</span>
     <img src="/api-car-images/{{.ImageURL}}" class="detail-car-image" />
   </div>
 
@@ -59,12 +70,12 @@
 </div>
 
 <section class="car-collection">
-    <div class="collection-hero">
-        <p class="">Recently Viewed Cars</p>
-    </div>
-    <div class="recently-viewed-grid">
-        {{range .RecentCars}} {{template "recentCarCard" .}} {{end}}
-    </div>
+  <div class="collection-hero">
+    <p class="">Recently Viewed Cars</p>
+  </div>
+  <div class="recently-viewed-grid">
+    {{range .RecentCars}} {{template "recentCarCard" .}} {{end}}
+  </div>
 </section>
 
 {{end}}

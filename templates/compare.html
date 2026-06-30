@@ -25,7 +25,7 @@
                         {{range .CompareCars}}
                         <th class="car-image-row">
                             <div class="">
-                                <img src="/api-car-images/{{.Image}}" class="car-image" alt="{{.Name}}">
+                                <img src="/api-car-images/{{.Image}}" class="compare-car-image" alt="{{.Name}}">
                             </div>
                         </th>
                         {{end}}
@@ -36,6 +36,12 @@
                         <td class="">Category</td>
                         {{range .CompareCars}}
                         <td>{{.Category}}</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <td class="">Manufacturer</td>
+                        {{range .CompareCars}}
+                        <td>{{.Manufacturer}}</td>
                         {{end}}
                     </tr>
                     <tr>

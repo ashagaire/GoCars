@@ -13,7 +13,7 @@ func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categ
 		carView := models.CarView{
 			ID:             car.ID,
 			Name:           car.Name,
-			Manufacturer:   manufacturerMap[car.ManufacturerID],
+			Manufacturer:   manufacturerMap[car.ManufacturerID].Name,
 			Category:       categoryMap[car.CategoryID],
 			Year:           car.Year,
 			Specifications: car.Specifications,
@@ -29,11 +29,13 @@ func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categ
 func BuildCarDetailsView(carData models.Car, recommendedCars []models.CarView, viewedCars []models.CarView, manufacturers []models.Manufacturer, categories []models.Category) models.CarDetailView {
 	manufacturerMap := BuildManufacturerMap(manufacturers)
 	categoryMap := BuildCategoryMap(categories)
-
+	
 	carDetalsView := models.CarDetailView{
 		ID:              carData.ID,
 		Name:            carData.Name,
-		Manufacturer:    manufacturerMap[carData.ManufacturerID],
+		ManufacturerName:    manufacturerMap[carData.ManufacturerID].Name,
+		ManufacturerCountry:    manufacturerMap[carData.ManufacturerID].Country,
+		ManufacturerYear:    manufacturerMap[carData.ManufacturerID].FoundingYear,
 		Category:        categoryMap[carData.CategoryID],
 		Year:            carData.Year,
 		ImageURL:        carData.Image,
@@ -53,7 +55,7 @@ func BuildCarsCompareViews(cars []models.Car, manufacturers []models.Manufacture
 		carView := models.CarView{
 			ID:             car.ID,
 			Name:           car.Name,
-			Manufacturer:   manufacturerMap[car.ManufacturerID],
+			Manufacturer:   manufacturerMap[car.ManufacturerID].Name,
 			Category:       categoryMap[car.CategoryID],
 			Year:           car.Year,
 			Specifications: car.Specifications,
