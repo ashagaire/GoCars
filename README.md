@@ -1,117 +1,181 @@
 # GoCars
 
-A website that showcases information about different car models, their specifications, manufacturers, and more.
+GoCars is a web application built with Go that allows users to explore different car models, compare specifications, browse manufacturers, and search for vehicles based on multiple criteria. The application retrieves data from a REST API and presents it through a clean and responsive web interface.
 
-## Setup and Installation
+---
 
-1.Clone the repository:
-```bash  
+# Project Overview
+
+GoCars consists of two components:
+
+### Go Web Application
+The frontend is built with Go using HTML templates and serves dynamic web pages that allow users to browse and explore car information.
+
+### Cars REST API
+A Node.js + Express API provides data about:
+
+- Car models
+- Manufacturers
+- Categories
+- Vehicle images
+
+The Go application consumes this API to render all pages.
+
+## Features
+
+- Browse all available cars
+- Search and advanced filtering
+- View detailed specifications for each vehicle
+- Compare cars side-by-side
+- View recently viewed cars
+- Receive recommended cars based on the currently viewed vehicle
+
+---
+
+# Setup and Installation
+
+## 1. Clone the repository
+
+```bash
 git clone https://gitea.kood.tech/ashagaire/GoCars.git
 cd GoCars
 ```
 
-## Installation of required packages for database apis
+## 2. Install and run the Cars API
+
+Navigate to the API folder.
+
 ```bash
 cd api
 ```
-- Install [NodeJS](http://nodejs.org)
-- Install [NPM](https://www.npmjs.com/package/npm) package manager
-- Install required packages: 
+
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-```bash 
+or
+
+```bash
 make build
 ```
 
+Run the API:
 
-
-To run the server you need simply to execute the following command:
 ```bash
 make run
 ```
 
-```bash
-Server is running on http://localhost:3000
+The API will run on:
+
+```
+http://localhost:3000
 ```
 
-
-Or if you want to customize the port of the server (port 3001 for example), run:
+To use another port:
 
 ```bash
 PORT=3001 make run
 ```
----
-## Execute the GoCars web application in root folder
+
+## 3. Run the Go application
+
+Return to the project root:
 
 ```bash
-cd GoCars 
+cd ..
 ```
+
+Start the application:
 
 ```bash
-go run . 
+go run .
 ```
 
-```bash 
-Server is running at http://localhost:8080 ...
-```
-
-# Usage Guide
-
-## Browse Cars
-
-Open:
+The web application will be available at:
 
 ```
 http://localhost:8080
 ```
 
-The homepage displays all available car models.
+---
 
-## Search
+# Usage Guide
 
-Use the search bar to find cars by model name.
+## Home Page
 
-Examples:
+The homepage displays all available cars. Users can browse the collection, search for vehicles, apply filters, or navigate to other pages.
 
-- Corolla
-- BMW
-- Civic
+## Search & Filter
 
-## Filter Cars
+The search bar supports keyword searches across multiple car attributes, allowing users to quickly find relevant vehicles.
 
-Use the filter panel to narrow results by:
+Searchable information includes:
+
+- Model name
+- Manufacturer
+- Category
+- Year
+- Transmission
+- Drivetrain
+- Horsepower
+
+Users can further narrow the results by applying filters for:
 
 - Manufacturer
 - Category
-- Minimum year
-- Maximum year
+- Production year range
+- Transmision
+- Drivetrain
+- Horsepower
 
-Filters can be combined with the search function.
+Search and filters work together and update the displayed results accordingly.
 
-## View Car Details
+## Car Details
 
-Click on any car card to view:
+Selecting a car opens its detail page, where users can view:
 
+- Manufacturer info
+- Category
 - Engine
 - Horsepower
 - Transmission
 - Drivetrain
+- Production year
+
+The page also displays:
+
+- Recommended cars with similar characteristics
+- Recently viewed cars for quick navigation back to previously visited vehicles
+
+## Manufacturer Page
+
+Users can browse manufacturers and view:
+
+- Country of origin
+- Founding year
+- All cars produced by the selected manufacturer
+
+## Compare Cars
+
+Users can compare two vehicles side-by-side, including:
+
 - Manufacturer
 - Category
-- Model year
+- Engine
+- Horsepower
+- Transmission
+- Drivetrain
+- Production year
 
-## Recommended Cars
-
-Each car details page displays similar recommended vehicles based on shared characteristics.
+This allows users to easily identify differences between two models.
 
 ---
 
-# Cars API
+# API Endpoints
 
-The API exposes the following endpoints:
+The API provides the following endpoints:
 
 ```
 GET /api/models
@@ -124,7 +188,7 @@ GET /api/categories
 GET /api/categories/{id}
 ```
 
-Images are available from:
+Vehicle images are served from:
 
 ```
 /api/images
@@ -137,13 +201,13 @@ Images are available from:
 ```
 GoCars/
 │
-├── api/                 # Node.js REST API
-├── handlers/            # HTTP handlers
-├── models/              # Data models
-├── services/            # Business logic
-├── templates/           # HTML templates
-├── static/              # CSS and assets
-├── main.go              # Application entry point
+├── api/                # Node.js REST API
+├── handlers/           # HTTP handlers
+├── models/             # Data models
+├── services/           # Business logic
+├── templates/          # HTML templates
+├── static/             # CSS, JavaScript and images
+├── main.go             # Application entry point
 └── README.md
 ```
 
@@ -151,10 +215,11 @@ GoCars/
 
 # Additional Features
 
-Besides the required functionality, the project also includes several improvements:
+In addition to the required project functionality, GoCars includes:
 
-- Responsive user interface
-- Search by car model name
-- Multiple filter options
-- Combined search and filtering
-- Car recommendation section
+- Full-text search across multiple vehicle attributes
+- Multi-criteria filtering
+- Car comparison page
+- Manufacturer information page
+- Recently viewed cars history
+- Recommended cars based on the selected vehicle
