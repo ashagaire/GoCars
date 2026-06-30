@@ -43,7 +43,7 @@ Or if you want to customize the port of the server (port 3001 for example), run:
 ```bash
 PORT=3001 make run
 ```
-
+---
 ## Execute the GoCars web application in root folder
 
 ```bash
@@ -57,3 +57,104 @@ go run .
 ```bash 
 Server is running at http://localhost:8080 ...
 ```
+
+# Usage Guide
+
+## Browse Cars
+
+Open:
+
+```
+http://localhost:8080
+```
+
+The homepage displays all available car models.
+
+## Search
+
+Use the search bar to find cars by model name.
+
+Examples:
+
+- Corolla
+- BMW
+- Civic
+
+## Filter Cars
+
+Use the filter panel to narrow results by:
+
+- Manufacturer
+- Category
+- Minimum year
+- Maximum year
+
+Filters can be combined with the search function.
+
+## View Car Details
+
+Click on any car card to view:
+
+- Engine
+- Horsepower
+- Transmission
+- Drivetrain
+- Manufacturer
+- Category
+- Model year
+
+## Recommended Cars
+
+Each car details page displays similar recommended vehicles based on shared characteristics.
+
+---
+
+# Cars API
+
+The API exposes the following endpoints:
+
+```
+GET /api/models
+GET /api/models/{id}
+
+GET /api/manufacturers
+GET /api/manufacturers/{id}
+
+GET /api/categories
+GET /api/categories/{id}
+```
+
+Images are available from:
+
+```
+/api/images
+```
+
+---
+
+# Project Structure
+
+```
+GoCars/
+│
+├── api/                 # Node.js REST API
+├── handlers/            # HTTP handlers
+├── models/              # Data models
+├── services/            # Business logic
+├── templates/           # HTML templates
+├── static/              # CSS and assets
+├── main.go              # Application entry point
+└── README.md
+```
+
+---
+
+# Additional Features
+
+Besides the required functionality, the project also includes several improvements:
+
+- Responsive user interface
+- Search by car model name
+- Multiple filter options
+- Combined search and filtering
+- Car recommendation section
