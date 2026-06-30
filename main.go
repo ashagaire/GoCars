@@ -20,6 +20,8 @@ func main() {
 	http.HandleFunc("/", handlers.HomeHandler)
 	http.HandleFunc("/car", handlers.CarDetailsPageHandler)
 	http.HandleFunc("/manufacturers", handlers.ManufacturerPageHandler)
+	http.HandleFunc("/compare", handlers.ComparePageHandler)
+
 	fmt.Println("Go server running at http://localhost:8080")
 	err1 := http.ListenAndServe(":8080", nil)
 	log.Fatalln(err1)

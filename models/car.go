@@ -91,3 +91,13 @@ type ScoredCar struct {
 	Car   CarView
 	Score int
 }
+
+type CompareRequest struct {
+    CarIDs []int
+}
+
+type ComparePageData struct {
+	Cars           []CarView
+	ActivePage     string
+	
+}

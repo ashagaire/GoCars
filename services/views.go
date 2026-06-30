@@ -41,3 +41,24 @@ func BuildCarDetailsView(carData models.Car, recommendedCars []models.CarView, m
 	}
 	return carDetalsView
 }
+
+func BuildCarsCompareViews(cars []models.Car, manufacturers []models.Manufacturer, categories []models.Category) []models.CarView {
+	manufacturerMap := BuildManufacturerMap(manufacturers)
+	categoryMap := BuildCategoryMap(categories)
+
+	var carViews []models.CarView
+	for _, car := range cars {
+		carView := models.CarView{
+			ID:             car.ID,
+			Name:           car.Name,
+			Manufacturer:   manufacturerMap[car.ManufacturerID],
+			Category:       categoryMap[car.CategoryID],
+			Year:           car.Year,
+			Specifications: car.Specifications,
+			Image:          car.Image,
+		}
+
+		carViews = append(carViews, carView)
+	}
+	return carViews
+}
