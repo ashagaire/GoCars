@@ -1,25 +1,23 @@
 {{define "comparison"}}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Compare Cars</title>
     <meta charset="UTF-8">
+    <title>GoCars - Compare Cars</title>
+
     <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
-{{template "header" .ActivePage}}
+    {{template "header" .ActivePage}}
 
-<div class="page-container">
+    <div class="page-container">
 
-    <div class="collection-hero">
-        <p>Compare Cars</p>
-    </div>
-
-    {{if eq (len .Cars) 0}}
+        {{if eq (len .Cars) 0}}
 
         <div class="empty-compare">
 
@@ -27,41 +25,87 @@
 
             <h2>No cars selected</h2>
 
-            <p>Select cars from the homepage to compare them.</p>
+            <p>
+                Choose up to four vehicles from the collection to compare
+                specifications side by side.
+            </p>
 
-            <a class="car-action" href="/">
+            <a href="/" class="car-action">
                 Browse Cars
             </a>
 
         </div>
 
-    {{else}}
+        {{else}}
 
-    <div class="compare-table">
+        <!-- =======================================
+                    Header
+        ======================================== -->
 
-        <div class="compare-row header">
+        <div class="compare-header">
 
-            <div class="feature-column"></div>
+            <div>
+
+                <h1>Compare Cars</h1>
+
+                <p class="compare-subtitle">
+                    Compare up to four vehicles side by side.
+                </p>
+
+            </div>
+
+            <div class="compare-count">
+
+                {{len .Cars}} Selected
+
+            </div>
+
+        </div>
+
+        <!-- =======================================
+                    Cards
+        ======================================== -->
+
+        <div class="compare-cars">
 
             {{range .Cars}}
 
-            <div class="car-column">
+            <div class="compare-card">
 
-                <img src="/api-car-images/{{.Image}}" class="compare-image">
+                <img src="/api-car-images/{{.Image}}" alt="{{.Name}}">
 
-                <h3>{{.Name}}</h3>
+                <div class="compare-card-content">
 
-                <form action="/compare/remove" method="POST">
+                    <p class="compare-maker">
+                        {{.Manufacturer}}
+                    </p>
 
-                    <input type="hidden" name="id" value="{{.ID}}">
+                    <h3>
+                        {{.Name}}
+                    </h3>
 
-                    <button class="car-action">
+                    <span class="category">
+                        {{.Category}}
+                    </span>
 
-                        Remove
+                    <form action="/compare/remove" method="POST">
 
-                    </button>
+                        <input
+                            type="hidden"
+                            name="id"
+                            value="{{.ID}}">
 
-                </form>
+                        <button class="car-action">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                            Remove
+
+                        </button>
+
+                    </form>
+
+                </div>
 
             </div>
 
@@ -69,76 +113,115 @@
 
         </div>
 
-        <div class="compare-row">
-            <div class="feature-column">Manufacturer</div>
+        <!-- =======================================
+                    Specifications
+        ======================================== -->
 
-            {{range .Cars}}
-            <div class="value-column">{{.Manufacturer}}</div>
-            {{end}}
+        <h2 class="compare-title">
 
-        </div>
+            Specifications
 
-        <div class="compare-row">
-            <div class="feature-column">Category</div>
+        </h2>
 
-            {{range .Cars}}
-            <div class="value-column">{{.Category}}</div>
-            {{end}}
+        <table class="compare-table">
 
-        </div>
+            <tbody>
 
-        <div class="compare-row">
-            <div class="feature-column">Year</div>
+                <tr>
 
-            {{range .Cars}}
-            <div class="value-column">{{.Year}}</div>
-            {{end}}
+                    <td class="spec-title">
+                        <i class="fa-solid fa-calendar"></i>
+                        Year
+                    </td>
 
-        </div>
+                    {{range .Cars}}
 
-        <div class="compare-row">
-            <div class="feature-column">Engine</div>
+                    <td class="spec-value">
+                        {{.Year}}
+                    </td>
 
-            {{range .Cars}}
-            <div class="value-column">{{.Specifications.Engine}}</div>
-            {{end}}
+                    {{end}}
 
-        </div>
+                </tr>
 
-        <div class="compare-row">
-            <div class="feature-column">Horsepower</div>
+                <tr>
 
-            {{range .Cars}}
-            <div class="value-column">{{.Specifications.Horsepower}} HP</div>
-            {{end}}
+                    <td class="spec-title">
+                        <i class="fa-solid fa-gears"></i>
+                        Engine
+                    </td>
 
-        </div>
+                    {{range .Cars}}
 
-        <div class="compare-row">
-            <div class="feature-column">Transmission</div>
+                    <td class="spec-value">
+                        {{.Specifications.Engine}}
+                    </td>
 
-            {{range .Cars}}
-            <div class="value-column">{{.Specifications.Transmission}}</div>
-            {{end}}
+                    {{end}}
 
-        </div>
+                </tr>
 
-        <div class="compare-row">
-            <div class="feature-column">Drivetrain</div>
+                <tr>
 
-            {{range .Cars}}
-            <div class="value-column">{{.Specifications.Drivetrain}}</div>
-            {{end}}
+                    <td class="spec-title">
+                        <i class="fa-solid fa-bolt"></i>
+                        Horsepower
+                    </td>
 
-        </div>
+                    {{range .Cars}}
+
+                    <td class="spec-value horsepower">
+                        {{.Specifications.Horsepower}} HP
+                    </td>
+
+                    {{end}}
+
+                </tr>
+
+                <tr>
+
+                    <td class="spec-title">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        Transmission
+                    </td>
+
+                    {{range .Cars}}
+
+                    <td class="spec-value">
+                        {{.Specifications.Transmission}}
+                    </td>
+
+                    {{end}}
+
+                </tr>
+
+                <tr>
+
+                    <td class="spec-title">
+                        <i class="fa-solid fa-car"></i>
+                        Drivetrain
+                    </td>
+
+                    {{range .Cars}}
+
+                    <td class="spec-value">
+                        {{.Specifications.Drivetrain}}
+                    </td>
+
+                    {{end}}
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        {{end}}
 
     </div>
-
-    {{end}}
-
-</div>
 
 </body>
 
 </html>
+
 {{end}}
