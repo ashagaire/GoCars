@@ -5,8 +5,9 @@ import (
 	"car-viewer/services"
 	"html/template"
 	"log"
-	"net/http"
 	"strconv"
+	"strings"
+	"net/http"
 )
 
 func ComparePageHandler(w http.ResponseWriter, r *http.Request) {
@@ -17,18 +18,28 @@ func ComparePageHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Printf("Error parsing templates: %v", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
-
 		return
 	}
 
-	var req CompareRequest
-	err := json.NewDecoder(r.Body).Decode(&req)
-	if err != nil {
-        http.Error(w, err.Error(), http.StatusBadRequest)
-        return
-    }
+	var ids []int
 
-	carsData, err := services.GetCompareCars(req)
+	cookie, err := r.Cookie("compare_cars")
+	if err == nil && cookie.Value != "" {
+		idStrings := strings.Split(cookie.Value, ",")
+		for _, id := range idStrings {
+			if idInt, err := strconv.Atoi(id); err == nil {
+				ids = append(ids, idInt)
+			}
+		}
+	}
+
+	if len(ids) == 0 {
+		 http.Redirect(w, r, "/", http.StatusSeeOther)
+        return
+	}
+
+
+	carsData, err := services.GetCompareCars(ids)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

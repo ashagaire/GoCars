@@ -4,7 +4,7 @@ import (
 	"car-viewer/models"
 )
 
-func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categories []models.Category) []models.CarView {
+func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categories []models.Category, comparedMap map[int]bool) []models.CarView {
 	manufacturerMap := BuildManufacturerMap(manufacturers)
 	categoryMap := BuildCategoryMap(categories)
 
@@ -18,6 +18,7 @@ func BuildCarViews(cars []models.Car, manufacturers []models.Manufacturer, categ
 			Year:           car.Year,
 			Specifications: car.Specifications,
 			Image:          car.Image,
+			IsCompared: 	comparedMap[car.ID],
 		}
 
 		carViews = append(carViews, carView)

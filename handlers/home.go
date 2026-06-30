@@ -5,6 +5,8 @@ import (
 	"car-viewer/services"
 	"html/template"
 	"log"
+	"strconv"
+	"strings"
 	"net/http"
 )
 
@@ -17,6 +19,16 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
+	}
+
+	comparedMap := make(map[int]bool)
+	if cookie, err := r.Cookie("compare_cars"); err == nil && cookie.Value != "" {
+		comparedIDs := strings.Split(cookie.Value, ",")
+		for _, id := range comparedIDs {
+			if idInt, err := strconv.Atoi(id); err == nil {
+            	comparedMap[idInt] = true
+       		}
+		}
 	}
 
 	cars, err := services.GetCars()
@@ -43,7 +55,8 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	var filters models.CarFilters
 	getQuery(r, &filters)
 	filterCars := services.FilterCars(cars, filters)
-	filterCarViews := services.BuildCarViews(filterCars, manufacturers, categories)
+
+	filterCarViews := services.BuildCarViews(filterCars, manufacturers, categories, comparedMap)
 
 	pageData := models.PageData{
 		AllManufacture: allManufacturer,

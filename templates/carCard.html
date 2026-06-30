@@ -44,9 +44,17 @@
                 </div>
             </div>
             <div class="car-details-buttons">
-                <a href="/car?id={{.ID}}" style="">
-                    <i class="fa-solid fa-code-compare"></i>
-                    Compare </a>
+                <button type="button" data-car-id="{{.ID}}" data-selected="{{if .IsCompared}}true{{else}}false{{end}}"
+                    onclick="toggleCompare(this)" style="cursor: pointer;">
+
+                    <i
+                        class="compare-icon {{if .IsCompared}}fa-solid fa-square-check{{else}}fa-regular fa-square{{end}}"></i>
+                    Compare
+                </button>
+
+                <!-- <button type="button" data-car-id="{{.ID}}" style="cursor: pointer; ">
+                    <i class="fa-regular fa-square"></i> Compare
+                </button> -->
                 <a href="/car?id={{.ID}}" style="">
 
                     View details <i class="fa-solid fa-arrow-right"></i></a>

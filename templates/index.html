@@ -11,15 +11,16 @@
 </head>
 
 <body>
-    {{template "header" .ActivePage}}
-    {{template "hero" .}}
+    {{ template "header" .ActivePage }}
+    {{ template "hero" .}}
 
     <main class="page-container">
-        {{template "search" .}}
-        {{template "carCollection" .}}
+        {{ template "search" .}}
+        {{ template "carCollection" .}}
     </main>
+    <script src="/static/js/compare.js"></script>
 
 </body>
 
 </html>
-{{end}}
+{{ end }}

@@ -3,25 +3,25 @@ package services
 import (
 	"car-viewer/models"
 	"encoding/json"
+	"strconv"
 	"net/http"
 )
 
-func GetCompareCars(ids []string) ([]models.Car, error) {
-	listCars := []models.Car
-	if ids == nil {
-		return nil, err
-	}
-	for id := range ids {
-		resp, err := http.Get("http://localhost:3000/api/models/" + id)
+func GetCompareCars(ids []int) ([]models.Car, error) {
+	var listCars []models.Car
+	
+	for _, id := range ids {
+		idStr := strconv.Itoa(id)
+		resp, err := http.Get("http://localhost:3000/api/models/" + idStr)
 		if err != nil {
-			return models.Car{}, err
+			return listCars, err
 		}
 		defer resp.Body.Close()
 
 		var car models.Car
 		err = json.NewDecoder(resp.Body).Decode(&car)
 		if err != nil {
-			return models.Car{}, err
+			return listCars, err
 		}
 		listCars = append(listCars, car )
 	}
