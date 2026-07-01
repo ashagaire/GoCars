@@ -5,9 +5,9 @@ import (
 	"car-viewer/services"
 	"html/template"
 	"log"
+	"net/http"
 	"strconv"
 	"strings"
-	"net/http"
 )
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
@@ -26,26 +26,14 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		comparedIDs := strings.Split(cookie.Value, ",")
 		for _, id := range comparedIDs {
 			if idInt, err := strconv.Atoi(id); err == nil {
-            	comparedMap[idInt] = true
-       		}
+				comparedMap[idInt] = true
+			}
 		}
 	}
 
-	cars, err := services.GetCars()
+	manufacturers, categories, cars, err := services.FetchAllData()
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	manufacturers, err := services.GetManufacturers()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	categories, err := services.GetCategories()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		ServerError(w, "Fetching data failed", err)
 		return
 	}
 
@@ -69,10 +57,15 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	err = templates.ExecuteTemplate(w, "home", pageData)
-	
+
 	if err != nil {
 		log.Printf("ERROR: Executing template failed: %v", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+}
+
+func ServerError(w http.ResponseWriter, logMsg string, err error) {
+	log.Printf("Error: %s : %v", logMsg, err)
+	http.Error(w, "Oops, something went wrong. Please try again later.", http.StatusInternalServerError)
 }

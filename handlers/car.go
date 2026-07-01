@@ -28,8 +28,8 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 		comparedIDs := strings.Split(cookie.Value, ",")
 		for _, id := range comparedIDs {
 			if idInt, err := strconv.Atoi(id); err == nil {
-            	comparedMap[idInt] = true
-       		}
+				comparedMap[idInt] = true
+			}
 		}
 	}
 
@@ -45,21 +45,9 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cars, err := services.GetCars()
+	manufacturers, categories, cars, err := services.FetchAllData()
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	manufacturers, err := services.GetManufacturers()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	categories, err := services.GetCategories()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		ServerError(w, "Fetching data failed", err)
 		return
 	}
 
@@ -73,17 +61,17 @@ func CarDetailsPageHandler(w http.ResponseWriter, r *http.Request) {
 
 	carViews := services.BuildCarDetailsView(carData, recommendedCars, viewedCars, manufacturers, categories)
 	carDetailPageData := models.CarDetailView{
-		ID:              carViews.ID,
-		Name:            carViews.Name,
+		ID:                  carViews.ID,
+		Name:                carViews.Name,
 		ManufacturerName:    currentMfg.Name,
 		ManufacturerCountry: currentMfg.Country,
-		ManufacturerYear:	currentMfg.FoundingYear,
-		Category:        carViews.Category,
-		Year:            carViews.Year,
-		ImageURL:        carViews.ImageURL,
-		Specifications:  carViews.Specifications,
-		RecommendedCars: carViews.RecommendedCars,
-		RecentCars:      carViews.RecentCars,
+		ManufacturerYear:    currentMfg.FoundingYear,
+		Category:            carViews.Category,
+		Year:                carViews.Year,
+		ImageURL:            carViews.ImageURL,
+		Specifications:      carViews.Specifications,
+		RecommendedCars:     carViews.RecommendedCars,
+		RecentCars:          carViews.RecentCars,
 	}
 
 	err = templates.ExecuteTemplate(w, "CarDetails", carDetailPageData)

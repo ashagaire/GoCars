@@ -70,3 +70,54 @@ func GetCarbyID(id string) (models.Car, error) {
 	}
 	return car, nil
 }
+
+func FetchAllData() ([]models.Manufacturer, []models.Category, []models.Car, error) {
+	carsCh := make(chan []models.Car)
+	manuCh := make(chan []models.Manufacturer)
+	catCh := make(chan []models.Category)
+
+	errCh := make(chan error, 3)
+	go func() {
+		cars, err := GetCars()
+		if err != nil {
+			errCh <- err
+			return
+		}
+		carsCh <- cars
+	}()
+
+	go func() {
+		manufacturers, err := GetManufacturers()
+		if err != nil {
+			errCh <- err
+			return
+		}
+		manuCh <- manufacturers
+	}()
+
+	go func() {
+		categories, err := GetCategories()
+		if err != nil {
+			errCh <- err
+			return
+		}
+		catCh <- categories
+	}()
+
+	var (
+		cars          []models.Car
+		manufacturers []models.Manufacturer
+		categories    []models.Category
+	)
+	for i := 0; i < 3; i++ {
+		select {
+		case cars = <-carsCh:
+		case manufacturers = <-manuCh:
+		case categories = <-catCh:
+		case err := <-errCh:
+			return nil, nil, nil, err
+		}
+	}
+	return manufacturers, categories, cars, nil
+
+}

@@ -41,13 +41,13 @@
                         <input
                             type="number"
                             name="hp_from"
-                            placeholder="Min"
+                            placeholder="Min" min="0" max="5000" step="1"
                             value="{{if ne .Filter.HorsepowerFrom 0}}{{.Filter.HorsepowerFrom}}{{end}}">
                         <span>-</span>
                         <input
                             type="number"
                             name="hp_to"
-                            placeholder="Max"
+                            placeholder="Max" min="0" max="5000" step="1"
                             value="{{if ne .Filter.HorsepowerTo 0}}{{.Filter.HorsepowerTo}}{{end}}">
                     </div>
                 </div>
@@ -91,9 +91,9 @@
                 <div class="year-box">
                     <h5>Year Range</h5>
                     <div class="year-inputs">
-                        <input type="number" name="year_from" placeholder="From"  value="{{if ne .Filter.YearFrom 0}}{{.Filter.YearFrom}}{{end}}" >
+                        <input type="number" name="year_from" placeholder="From" min="1900" max="2026" step="1" value="{{if ne .Filter.YearFrom 0}}{{.Filter.YearFrom}}{{end}}" >
                         <span>-</span>
-                        <input type="number" name="year_to" placeholder="To" value="{{if ne .Filter.YearTo 0}}{{.Filter.YearTo}}{{end}}">
+                        <input type="number" name="year_to" placeholder="To" min="1900" max="2026" step="1" value="{{if ne .Filter.YearTo 0}}{{.Filter.YearTo}}{{end}}">
                     </div>
                 </div>
             </div>
