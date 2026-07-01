@@ -1,2 +1,7 @@
 .gocache/
-api/node_modules/
+node_modules/
+dist/
+build/
+bin/
+*.exe
+*.out

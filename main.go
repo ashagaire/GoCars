@@ -8,22 +8,22 @@ import (
 )
 
 func main() {
+	mux := http.NewServeMux()
 	fileServer := http.FileServer(http.Dir("static"))
-	http.Handle("/static/", http.StripPrefix("/static/", fileServer))
+	mux.Handle("/static/", http.StripPrefix("/static/", fileServer))
 
 	imageServer := http.FileServer(http.Dir("./api/img"))
-	http.Handle("/api-car-images/", http.StripPrefix("/api-car-images/", imageServer))
+	mux.Handle("/api-car-images/", http.StripPrefix("/api-car-images/", imageServer))
 
 	assetsServer := http.FileServer(http.Dir("assets"))
-	http.Handle("/assets/", http.StripPrefix("/assets/", assetsServer))
+	mux.Handle("/assets/", http.StripPrefix("/assets/", assetsServer))
 
-	http.HandleFunc("/", handlers.HomeHandler)
-	http.HandleFunc("/car", handlers.CarDetailsPageHandler)
-	http.HandleFunc("/manufacturers", handlers.ManufacturerPageHandler)
-	http.HandleFunc("/compare", handlers.ComparePageHandler)
+	mux.HandleFunc("/", handlers.HomeHandler)
+	mux.HandleFunc("/car", handlers.CarDetailsPageHandler)
+	mux.HandleFunc("/manufacturers", handlers.ManufacturerPageHandler)
+	mux.HandleFunc("/compare", handlers.ComparePageHandler)
 
 	fmt.Println("Go server running at http://localhost:8080")
-	err1 := http.ListenAndServe(":8080", nil)
+	err1 := http.ListenAndServe(":8080", mux)
 	log.Fatalln(err1)
 }
-
