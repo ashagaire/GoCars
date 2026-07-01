@@ -5,9 +5,9 @@ import (
 	"car-viewer/services"
 	"html/template"
 	"log"
+	"net/http"
 	"strconv"
 	"strings"
-	"net/http"
 )
 
 func ComparePageHandler(w http.ResponseWriter, r *http.Request) {
@@ -34,10 +34,9 @@ func ComparePageHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(ids) == 0 {
-		 http.Redirect(w, r, "/", http.StatusSeeOther)
-        return
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
 	}
-
 
 	carsData, err := services.GetCompareCars(ids)
 	if err != nil {
@@ -45,22 +44,16 @@ func ComparePageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	manufacturers, err := services.GetManufacturers()
+	manufacturers, categories, _, err := services.FetchAllData()
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	categories, err := services.GetCategories()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		ServerError(w, "Fetching data failed", err)
 		return
 	}
 
 	carViews := services.BuildCarsCompareViews(carsData, manufacturers, categories)
 	comparePageData := models.ComparePageData{
-		CompareCars:     carViews,
-		ActivePage:     "compare",
+		CompareCars: carViews,
+		ActivePage:  "compare",
 	}
 
 	err = templates.ExecuteTemplate(w, "Compare", comparePageData)
